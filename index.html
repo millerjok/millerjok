@@ -2,6 +2,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Japanese Flashcard App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -14,13 +15,26 @@
             flex-direction: column;
         }
         .banner {
-            background: #ffffff;
+            background: #f8f8f8;
             width: 100%;
             padding: 20px;
             text-align: center;
             font-size: 1.5em;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+        }
+        .kana-text {
+            font-size: 1em; /* Shrink the font size */
+            color: rgb(50, 135, 178); /* Change the color to grey */
+            font-weight: bold
+        }
+        .romaji-text {
+            font-size: 0.8em; /* Shrink the font size */
+            color: rgb(241, 241, 241); /* Change the text color to grey */
+        }
+        .english-text {
+            font-size: 1em; /* Shrink the font size */
+            color: rgb(0, 0, 0); /* Change the color to grey */
         }
         .catalogue-container {
             display: flex;
@@ -79,8 +93,8 @@
         .flashcard, .test-question {
             font-size: 2.5em;
             text-align: center;
-            margin-bottom: 20px;
-            padding: 30px;
+            margin-bottom: 10px;
+            padding: 5px;
             border-radius: 10px;
             background: #f7f7f7;
             width: 100%;
@@ -90,11 +104,11 @@
         }
         .button-container, .test-answers {
             display: flex;
-            justify-content: center;
+            justify-content: top;
             width: 100%;
             flex-wrap: wrap;
             flex-direction: column;
-            align-items: center;
+            align-items: top;
         }
         button {
             padding: 12px;
@@ -102,30 +116,135 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            background: #4CAF50;
+            background: #4c7daf;
             color: #fff;
             transition: background-color 0.3s;
             margin: 10px;
         }
         button:hover {
-            background-color: #81c784;
+            background-color: #6e95bb;
         }
         #next-button {
             display: none;
         }
+        .home-button {
+            
+    width: 50px;
+    height: 50px;
+    background: url('https://www.fivesenseseducation.com.au/media/catalog/product/cache/6784d9c84c6c2876bb0ec06c7a104398/9/7/9781488624063_iitomo_2_2e_activity_book.jpg') no-repeat center center;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    transition: transform 0.2s;
+}
+.home-button:hover {
+    transform: scale(1.1);
+}
+.listening-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.speaker-button {
+    width: 50px;
+    height: 50px;
+    background: url('https://cdn-icons-png.flaticon.com/512/727/727245.png') no-repeat center center;
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+    margin: 20px 0;
+    transition: transform 0.2s;
+}
+
+.speaker-button:hover {
+    transform: scale(1.1);
+}
+
+.listening-answers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.listening-answers button {
+    padding: 10px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #4CAF50;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.listening-answers button:hover {
+    background-color: #0058bd;
+}
+
+.matching-container {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.matching-game {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.matching-item {
+    width: 150px;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+}
+
+.matching-item.selected {
+    background-color: #81c784; /* Change to a distinct color when selected */
+    border: 2px solid #4caf50;  /* Add a green border to indicate selection */
+}
+
+
     </style>
 <script defer="" data-domain="purple-nanni-72.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
 <body>
     <div class="banner" style="position: relative;">
-        <button class="catalogue-button" onclick="goBackToCatalogue()" style="position: absolute; top: 20px; left: 20px; padding: 5px; font-size: 0.9em;">Return to Home</button>
-        An app developed by Wong sensei
+        <button class="home-button" onclick="goBackToCatalogue()" title="Return to Home"></button>
+        <h1 class="banner-title">Year 8 Japanese: iitomo 2</h1>        
     </div>
 
     <div class="catalogue-container" id="catalogue-container">
         <h2>Choose a set of flashcards to practice</h2>
-        <button class="catalogue-button" onclick="chooseSet(1)">Chapter 1</button>
-        <button class="catalogue-button" onclick="chooseSet(2)">Chapter 2</button>
-        <button class="catalogue-button" onclick="chooseSet(3)">Chapter 3</button>
+        <button class="catalogue-button" onclick="chooseSet(1)">Hobbies</button>
+        <button class="catalogue-button" onclick="chooseSet(2)">Food</button>
+        <button class="catalogue-button" onclick="chooseSet(3)">Time & Hour</button>
         <button class="catalogue-button" onclick="chooseSet(4)">Chapter 4</button>
         <button class="catalogue-button" onclick="chooseSet(5)">Chapter 5</button>
         <button class="catalogue-button" onclick="chooseSet(6)">Chapter 6</button>
@@ -135,15 +254,26 @@
         <h2>Choose a mode to practice</h2>
         <button class="catalogue-button" onclick="startFlashcardMode()">Flashcard Mode</button>
         <button class="catalogue-button" onclick="startTestMode()">Test Mode</button>
+        <button class="catalogue-button" onclick="startListeningMode()">Listening Mode</button>
+        <button class="catalogue-button" onclick="startMatchingMode()">Matching Mode</button>
+
+    </div>
+    
+    <div class="listening-container" id="listening-container" style="display: none;">
+        <h2>Listening Mode</h2>
+        <p>Click to hear the Japanese sentence, then choose the word being used in the sentence.</p>
+        <button class="speaker-button" onclick="playListeningAudio()" aria-label="Play word"></button>
+        <div class="listening-answers" id="listening-answers"></div>
     </div>
 
     <div class="flashcard-container" id="flashcard-container">
         <div id="flashcard" class="flashcard" onclick="playAudio()">Click "Show Meaning" to start!</div>
         <div class="button-container">
-            <button onclick="showMeaning()">Show Meaning</button>
-            <button id="next-button" onclick="nextFlashcard()">Next</button>
-             <!-- Added Button -->
+            <button id="show-meaning-button" onclick="showMeaning()">Show Meaning</button>
+            <button id="study-again-button" style="display: none;" onclick="studyAgain()">Study Again</button>
+            <button id="next-button" style="display: none;" onclick="nextFlashcard()">Next</button>
         </div>
+        
     </div>
 
     <div class="test-container" id="test-container">
@@ -152,21 +282,197 @@
         
     </div>
 
+    <div class="matching-container" id="matching-container" style="display: none;">
+        <h2>Matching Mode</h2>
+        <p>Match the Japanese word with its English meaning.</p>
+        <div id="matching-game" class="matching-game"></div>
+    </div>
+    
+    <audio id="card-flip-sound" src="card-flip-sound.mp3"></audio>
+    <audio id="pikachu-sound" src="pikachu-sound.mp3"></audio>
+
     <script>
+    let totalQuestions = 15;
+    let currentQuestion = 0;
+    let correctAnswers = 0;
+
+    function startListeningMode() {
+    document.getElementById('mode-container').style.display = 'none';
+    document.getElementById('listening-container').style.display = 'flex';
+    
+    // Reset tracking variables
+    currentQuestion = 0;
+    correctAnswers = 0;
+
+    loadListeningQuestion();
+}
+
+
+function loadListeningQuestion() {
+    // Check if we've completed the total number of questions
+    if (currentQuestion >= totalQuestions) {
+        // Play Pikachu sound
+        const pikachuSound = document.getElementById('pikachu-sound');
+        pikachuSound.play();
+
+        alert(`Listening Test complete! You got ${correctAnswers}/${totalQuestions} correct.`);
+        goBackToCatalogue();
+        return;
+    }
+    // Increment current question number
+    currentQuestion++;
+
+    // Select a random card from the current set
+    const card = currentSet[Math.floor(Math.random() * currentSet.length)];
+    const correctAnswer = card.english;
+
+    // Generate three incorrect answers
+    let answers = [correctAnswer];
+    while (answers.length < 4) {
+        const randomAnswer = currentSet[Math.floor(Math.random() * currentSet.length)].english;
+        if (!answers.includes(randomAnswer)) {
+            answers.push(randomAnswer);
+        }
+    }
+    // Shuffle answers
+    answers = answers.sort(() => Math.random() - 0.5);
+    // Update the tally display in the question prompt
+    const answersContainer = document.getElementById('listening-answers');
+    const tallyContainer = document.createElement('p');
+    tallyContainer.style.fontWeight = 'bold';
+    tallyContainer.style.marginBottom = '10px';
+    tallyContainer.textContent = `Question ${currentQuestion}/${totalQuestions}`;
+    answersContainer.innerHTML = '';  // Clear previous content
+    answersContainer.appendChild(tallyContainer);
+    // Populate the answer buttons
+    answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.textContent = answer;
+        button.onclick = () => checkListeningAnswer(answer, correctAnswer);
+        answersContainer.appendChild(button);
+    });
+    // Store the current word for playback
+    sessionStorage.setItem('currentListeningWord', JSON.stringify(card));
+}
+
+
+function playListeningAudio() {
+    const card = JSON.parse(sessionStorage.getItem('currentListeningWord'));
+    if (card) {
+        const utterance = new SpeechSynthesisUtterance(card.example); // Play the "example" property
+        utterance.lang = 'ja-JP';
+        utterance.rate = 0.8; // Set reading speed to be slower (adjust value as needed)
+
+        // Fetch available voices
+        let voices = window.speechSynthesis.getVoices();
+
+        // Wait until voices are loaded (sometimes they are not loaded immediately)
+        if (voices.length === 0) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                voices = window.speechSynthesis.getVoices();
+                setJapaneseVoice(utterance, voices);
+                window.speechSynthesis.speak(utterance);
+            };
+        } else {
+            setJapaneseVoice(utterance, voices);
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+}
+
+
+function checkListeningAnswer(selectedAnswer, correctAnswer) {
+    if (selectedAnswer === correctAnswer) {
+        correctAnswers++;
+        alert('Correct!');
+    } else {
+        alert('Incorrect. Try again!');
+    }
+
+    loadListeningQuestion(); // Load a new question
+}
+
+
         const vocabularySets = {
+            
             1: [
-                { kanji: "私", kana: "わたし", romaji: "watashi", english: "I, me", example: "私は学生です。", exampleRomaji: "Watashi wa gakusei desu.", exampleEnglish: "I am a student." },
-                { kanji: "先生", kana: "せんせい", romaji: "sensei", english: "Teacher", example: "先生は教室にいます。", exampleRomaji: "Sensei wa kyoushitsu ni imasu.", exampleEnglish: "The teacher is in the classroom." },
-                { kanji: "学生", kana: "がくせい", romaji: "gakusei", english: "Student", example: "学生が図書館に行きます。", exampleRomaji: "Gakusei ga toshokan ni ikimasu.", exampleEnglish: "The student goes to the library." },
-                { kanji: "友達(ともだち)", kana: "ともだち", romaji: "tomodachi", english: "Friend", example: "友達と映画を見ました。", exampleRomaji: "Tomodachi to eiga o mimashita.", exampleEnglish: "I watched a movie with my friend." },
-                { kanji: "日本", kana: "にほん", romaji: "nihon", english: "Japan", example: "日本に行きたいです。", exampleRomaji: "Nihon ni ikitai desu.", exampleEnglish: "I want to go to Japan." },
-                { kanji: "山", kana: "やま", romaji: "yama", english: "Mountain", example: "山に登ります。", exampleRomaji: "Yama ni noborimasu.", exampleEnglish: "I will climb the mountain." },
-                { kanji: "川", kana: "かわ", romaji: "kawa", english: "River", example: "川で泳ぎます。", exampleRomaji: "Kawa de oyogimasu.", exampleEnglish: "I swim in the river." },
-                { kanji: "学校(がっこう)", kana: "がっこう", romaji: "gakkou", english: "School", example: "学校に行きます。", exampleRomaji: "Gakkou ni ikimasu.", exampleEnglish: "I go to school." },
-                { kanji: "車", kana: "くるま", romaji: "kuruma", english: "Car", example: "車を運転します。", exampleRomaji: "Kuruma o untenshimasu.", exampleEnglish: "I drive a car." },
-                { kanji: "食べ物", kana: "たべもの", romaji: "tabemono", english: "Food", example: "食べ物が好きです。", exampleRomaji: "Tabemono ga suki desu.", exampleEnglish: "I like food." }
+                { kanji: "私", kana: "わたし", romaji: "watashi", english: "I, me", example: "私は学生です。",  exampleEnglish: "I am a student." },
+                { kanji: "行(い)きます", kana: "いきます", romaji: "ikimasu", english: "To go", example: "かいものに行きます。", exampleEnglish: "I go shopping." },
+                { kanji: "します", kana: "します", romaji: "shimasu", english: "To do", example: "しゅくだいをします。",  exampleEnglish: "I do homework." },
+                { kanji: "聞(き)きます", kana: "ききます", romaji: "kikimasu", english: "To listen", example: "おんがくを聞きます。",  exampleEnglish: "I listen to music." },
+                { kanji: "読(よ)みます", kana: "よみます", romaji: "yomimasu", english: "To read", example: "まんがを読みます。", exampleEnglish: "I read a comic book." },
+                { kanji: "見(み)ます", kana: "みます", romaji: "mimasu", english: "To see/watch", example: "えいがを見ます。",  exampleEnglish: "I watch a movie." },
+                { kanji: "起(お)きます", kana: "おきます", romaji: "okimasu", english: "To wake up", example: "毎朝はやく起きます。",  exampleEnglish: "I wake up early every morning." },
+                { kanji: "寝(ね)ます", kana: "ねます", romaji: "nemasu", english: "To sleep", example: "夜おそく寝ます。",  exampleEnglish: "I sleep late at night." },
+                { kanji: "習(なら)います", kana: "ならいます", romaji: "naraimasu", english: "To learn", example: "日本語を習います。",  exampleEnglish: "I learn Japanese." },
+                { kanji: "買(か)います", kana: "かいます", romaji: "kaimasu", english: "To buy", example: "本を買います。",  exampleEnglish: "I buy a book." },
+                { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本がきらいです。",  exampleEnglish: "I hate books." },
+                { kanji: "水泳(すいえい)", kana: "すいえい", romaji: "suiei", english: "Swimming", example: "すいえいがすきです。",  exampleEnglish: "I like swimming." },
+                { kanji: "公園(こうえん)", kana: "こうえん", romaji: "kouen", english: "Park", example: "こうえんでテニスをします。",  exampleEnglish: "I play tennis at the park." },
+                { kanji: "ウォン先生(せんせい)", kana: "うぉんせんせい", romaji: "wonsensei", english: "Mr Wong", example: "ウォン先生は日本語をおしえます。",  exampleEnglish: "Mr Wong teaches Japanese." },
+          
             ],
+
             2: [
+                { kanji: "食べます", kana: "たべます", romaji: "tabemasu", english: "To eat", example: "ご飯を食べます。", exampleRomaji: "Gohan o tabemasu.", exampleEnglish: "I eat rice." },
+                { kanji: "飲みます", kana: "のみます", romaji: "nomimasu", english: "To drink", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
+                { kanji: "朝ごはん", kana: "あさごはん", romaji: "asagohan", english: "Breakfast", example: "朝ごはんを食べます。", exampleRomaji: "Asagohan o tabemasu.", exampleEnglish: "I eat breakfast." },
+                { kanji: "昼ごはん", kana: "ひるごはん", romaji: "hirugohan", english: "Lunch", example: "昼ごはんを食べます。", exampleRomaji: "Hirugohan o tabemasu.", exampleEnglish: "I eat lunch." },
+                { kanji: "晩ごはん", kana: "ばんごはん", romaji: "bangohan", english: "Dinner", example: "晩ごはんを食べます。", exampleRomaji: "Bangohan o tabemasu.", exampleEnglish: "I eat dinner." },
+                { kanji: "パン", kana: "ぱん", romaji: "pan", english: "Bread", example: "パンを食べます。", exampleRomaji: "Pan o tabemasu.", exampleEnglish: "I eat bread." },
+                { kanji: "卵(たまご)", kana: "たまご", romaji: "tamago", english: "Egg", example: "卵をりょうりします。", exampleRomaji: "Tamago o ryouri shimasu.", exampleEnglish: "I cook eggs." },
+                { kanji: "肉", kana: "にく", romaji: "niku", english: "Meat", example: "肉が好きです。", exampleRomaji: "Niku ga suki desu.", exampleEnglish: "I like meat." },
+                { kanji: "魚", kana: "さかな", romaji: "sakana", english: "Fish", example: "魚を食べます。", exampleRomaji: "Sakana o tabemasu.", exampleEnglish: "I eat fish." },
+                { kanji: "野菜(やさい)", kana: "やさい", romaji: "yasai", english: "Vegetable", example: "野菜を食べます。", exampleRomaji: "Yasai o tabemasu.", exampleEnglish: "I eat vegetables." },
+                { kanji: "果物(くだもの)", kana: "くだもの", romaji: "kudamono", english: "Fruit", example: "果物を食べます。", exampleRomaji: "Kudamono o tabemasu.", exampleEnglish: "I eat fruits." },
+                { kanji: "水", kana: "みず", romaji: "mizu", english: "Water", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
+                { kanji: "お茶(おちゃ)", kana: "おちゃ", romaji: "ocha", english: "Tea", example: "お茶を飲みます。", exampleRomaji: "Ocha o nomimasu.", exampleEnglish: "I drink tea." },
+                { kanji: "牛乳(ぎゅうにゅう)", kana: "ぎゅうにゅう", romaji: "gyuunyuu", english: "Milk", example: "牛乳を飲みます。", exampleRomaji: "Gyuunyuu o nomimasu.", exampleEnglish: "I drink milk." },
+                { kanji: "おいしい", kana: "おいしい", romaji: "oishii", english: "Delicious", example: "おべんとうはおいしいです。", exampleEnglish: "The bento is delicious." },
+                { kanji: "食べ物", kana: "たべもの", romaji: "tabemono", english: "Food", example: "食べ物がたくさんあります。", exampleEnglish: "There is a lot of food." },
+
+            ],
+
+            3: [
+            { kanji: "入ります", kana: "はいります", romaji: "hairimasu", english: "To enter", example: "おふろにはいります。", exampleEnglish: "I take a bath." },
+            { kanji: "あびます", kana: "あびます", romaji: "abimasu", english: "To shower", example: "シャワーをあびます。", exampleEnglish: "I take a shower." },
+            { kanji: "帰(かえ)ります", kana: "かえります", romaji: "kaerimasu", english: "To return", example: "うちに帰ります。", exampleEnglish: "I return home." },
+            { kanji: "毎日", kana: "まいにち", romaji: "mainichi", english: "Every day", example: "毎日ぶかつをします。", exampleEnglish: "Every day I do club activities." },
+            { kanji: "何時", kana: "なんじ", romaji: "nanji", english: "What time", example: "今、何時ですか。", exampleEnglish: "What time is it now?" },
+            { kanji: "半", kana: "はん", romaji: "han", english: "Half", example: "今、三時半です。", exampleEnglish: "Now, it is 3:30." },
+            { kanji: "そして", kana: "そして", romaji: "soshite", english: "And then", example: "そして、くじにテレビを見ます。", exampleEnglish: "And then, I watch TV at 9:00." },
+            { kanji: "土曜日", kana: "どようび", romaji: "doyoubi", english: "Saturday", example: "土曜日もぶかつをします。", exampleEnglish: "I also do club activities on Saturday." },
+            { kanji: "木曜日", kana: "もくようび", romaji: "mokuyoubi", english: "Thursday", example: "木曜日にけんどうをします。", exampleEnglish: "I do Kendo on Thursday." },
+            { kanji: "時", kana: "じ", romaji: "ji", english: "Time/hour", example: "じゅうじにねます。", exampleEnglish: "I sleep at 10:00." },
+            { kanji: "好き", kana: "すき", romaji: "suki", english: "To like", example: "おんがくが好きです。", exampleEnglish: "I like music." },
+            { kanji: "学校(がっこう)", kana: "がっこう", romaji: "gakkou", english: "School", example: "学校で勉強します。",  exampleEnglish: "I study at school." }
+            ],
+
+            4: [
+                { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
+                { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
+                { kanji: "猫", kana: "ねこ", romaji: "neko", english: "Cat", example: "猫が好きです。", exampleRomaji: "Neko ga suki desu.", exampleEnglish: "I like cats." },
+                { kanji: "家", kana: "いえ", romaji: "ie", english: "House", example: "家に帰ります。", exampleRomaji: "Ie ni kaerimasu.", exampleEnglish: "I return home." },
+                { kanji: "食べる", kana: "たべる", romaji: "taberu", english: "To eat", example: "ご飯を食べます。", exampleRomaji: "Gohan o tabemasu.", exampleEnglish: "I eat a meal." },
+                { kanji: "飲む", kana: "のむ", romaji: "nomu", english: "To drink", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
+                { kanji: "行く", kana: "いく", romaji: "iku", english: "To go", example: "学校に行きます。", exampleRomaji: "Gakkou ni ikimasu.", exampleEnglish: "I go to school." },
+                { kanji: "見る", kana: "みる", romaji: "miru", english: "To see", example: "映画を見ます。", exampleRomaji: "Eiga o mimasu.", exampleEnglish: "I watch a movie." },
+                { kanji: "聞く", kana: "きく", romaji: "kiku", english: "To listen", example: "音楽を聞きます。", exampleRomaji: "Ongaku o kikimasu.", exampleEnglish: "I listen to music." },
+                { kanji: "友人", kana: "ゆうじん", romaji: "yuujin", english: "Friend", example: "友人に会います。", exampleRomaji: "Yuujin ni aimasu.", exampleEnglish: "I meet my friend." }
+            ],            
+            5: [
+                { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
+                { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
+                { kanji: "猫", kana: "ねこ", romaji: "neko", english: "Cat", example: "猫が好きです。", exampleRomaji: "Neko ga suki desu.", exampleEnglish: "I like cats." },
+                { kanji: "家", kana: "いえ", romaji: "ie", english: "House", example: "家に帰ります。", exampleRomaji: "Ie ni kaerimasu.", exampleEnglish: "I return home." },
+                { kanji: "食べる", kana: "たべる", romaji: "taberu", english: "To eat", example: "ご飯を食べます。", exampleRomaji: "Gohan o tabemasu.", exampleEnglish: "I eat a meal." },
+                { kanji: "飲む", kana: "のむ", romaji: "nomu", english: "To drink", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
+                { kanji: "行く", kana: "いく", romaji: "iku", english: "To go", example: "学校に行きます。", exampleRomaji: "Gakkou ni ikimasu.", exampleEnglish: "I go to school." },
+                { kanji: "見る", kana: "みる", romaji: "miru", english: "To see", example: "映画を見ます。", exampleRomaji: "Eiga o mimasu.", exampleEnglish: "I watch a movie." },
+                { kanji: "聞く", kana: "きく", romaji: "kiku", english: "To listen", example: "音楽を聞きます。", exampleRomaji: "Ongaku o kikimasu.", exampleEnglish: "I listen to music." },
+                { kanji: "友人", kana: "ゆうじん", romaji: "yuujin", english: "Friend", example: "友人に会います。", exampleRomaji: "Yuujin ni aimasu.", exampleEnglish: "I meet my friend." }
+            ],            
+            6: [
                 { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
                 { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
                 { kanji: "猫", kana: "ねこ", romaji: "neko", english: "Cat", example: "猫が好きです。", exampleRomaji: "Neko ga suki desu.", exampleEnglish: "I like cats." },
@@ -178,7 +484,6 @@
                 { kanji: "聞く", kana: "きく", romaji: "kiku", english: "To listen", example: "音楽を聞きます。", exampleRomaji: "Ongaku o kikimasu.", exampleEnglish: "I listen to music." },
                 { kanji: "友人", kana: "ゆうじん", romaji: "yuujin", english: "Friend", example: "友人に会います。", exampleRomaji: "Yuujin ni aimasu.", exampleEnglish: "I meet my friend." }
             ],
-            // Add more sets for chapters 3-6...
         };
 
         let currentCardIndex = -1;
@@ -186,7 +491,7 @@
         let showingMeaning = false;
         let currentSet = [];
 
-        function chooseSet(setNumber) {
+function chooseSet(setNumber) {
     currentSet = vocabularySets[setNumber];
     document.getElementById('catalogue-container').style.display = 'none';
 
@@ -209,6 +514,36 @@
     document.body.appendChild(previewContainer);
 }
 
+
+
+
+function goBackToCatalogue() {
+    // Hide all mode-specific containers
+    document.getElementById('matching-container').style.display = 'none'; // Ensure matching container is hidden
+    document.getElementById('test-container').classList.remove('show');
+    document.getElementById('flashcard-container').classList.remove('show');
+    document.getElementById('listening-container').style.display = 'none';
+    document.getElementById('mode-container').style.display = 'none';
+    document.getElementById('catalogue-container').style.display = 'flex';
+    
+    // Show the home button again
+    document.querySelector('.home-button').style.display = 'block';
+
+    // Remove preview or subset containers if they exist
+    const previewContainer = document.getElementById('preview-container');
+    if (previewContainer) {
+        previewContainer.remove();
+    }
+
+    const subSetContainer = document.getElementById('sub-set-container');
+    if (subSetContainer) {
+        subSetContainer.remove();
+    }
+}
+
+
+
+
 function proceedToModeSelection() {
     const previewContainer = document.getElementById('preview-container');
     if (previewContainer) {
@@ -223,107 +558,412 @@ function proceedToModeSelection() {
             nextFlashcard();
         }
 
-        function startTestMode() {
-            document.getElementById('mode-container').style.display = 'none';
-            document.getElementById('test-container').classList.add('show');
-            nextTestQuestion();
-        }
+function startTestMode() {
+    document.getElementById('mode-container').style.display = 'none';
+    document.getElementById('test-container').classList.add('show');
 
-        function nextFlashcard() {
-            do {
-                currentCardIndex = Math.floor(Math.random() * currentSet.length);
-            } while (currentCardIndex === previousCardIndex);
-            previousCardIndex = currentCardIndex;
-            showingMeaning = false;
-            updateFlashcard();
-            document.getElementById('next-button').style.display = 'none';
-        }
+    // Reset variables for tracking progress
+    currentQuestion = 0;
+    correctAnswers = 0;
 
-        function showMeaning() {
-            showingMeaning = true;
-            updateFlashcard();
-            document.getElementById('next-button').style.display = 'inline-block';
-        }
+    // Shuffle the vocabulary set for randomized order during the test
+    currentSet = shuffleArray([...currentSet]); // Create a shuffled copy of currentSet to avoid modifying the original
 
-        function updateFlashcard() {
+    nextTestQuestion();
+}
+
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+
+
+function nextFlashcard() {
+    // Play card flip sound
+    const cardFlipSound = document.getElementById('card-flip-sound');
+    cardFlipSound.play();
+
+    // Move to the next card in sequence
+    currentCardIndex++;
+
+    // If the index exceeds the last card, restart from the first card
+    if (currentCardIndex >= currentSet.length) {
+        currentCardIndex = 0;
+    }
+
+    // Reset showingMeaning and update the flashcard
+    showingMeaning = false;
+    updateFlashcard();
+
+    // Hide the "Next" and "Study Again" buttons until the meaning is shown again
+    document.getElementById('next-button').style.display = 'none';
+    document.getElementById('study-again-button').style.display = 'none';
+
+    // Show the "Show Meaning" button for the next word
+    document.getElementById('show-meaning-button').style.display = 'inline-block';
+}
+
+
+
+
+
+function showMeaning() {
+    showingMeaning = true;
+    updateFlashcard();
+
+    // Hide "Show Meaning" button once it's clicked
+    document.getElementById('show-meaning-button').style.display = 'none';
+
+    // Show the "Next" and "Study Again" buttons
+    document.getElementById('next-button').style.display = 'inline-block';
+    document.getElementById('study-again-button').style.display = 'inline-block';
+}
+
+
+function studyAgain() {
+    // Add the current card back to the end of the deck
+    currentSet.push(currentSet[currentCardIndex]);
+    
+    // Move to the next card
+    currentCardIndex++;
+    if (currentCardIndex >= currentSet.length) {
+        currentCardIndex = 0; // Wrap around if needed
+    }
+
+    // Reset showingMeaning and update the flashcard to hide the meaning
+    showingMeaning = false;
+    updateFlashcard();
+
+    // Hide the "Next" and "Study Again" buttons
+    document.getElementById('study-again-button').style.display = 'none';
+    document.getElementById('next-button').style.display = 'none';
+
+    // Show the "Show Meaning" button for the next word
+    document.getElementById('show-meaning-button').style.display = 'inline-block';
+}
+
+
+
+function updateFlashcard() {
             const card = currentSet[currentCardIndex];
             const flashcardElement = document.getElementById('flashcard');
             if (showingMeaning) {
-                flashcardElement.innerHTML = `${card.kanji} (${card.kana})<br><br>${card.romaji}<br>${card.english}<br><br><strong>Example:</strong><br>${card.example}<br>${card.exampleRomaji}<br>${card.exampleEnglish}`;
+                flashcardElement.innerHTML = `<span class="romaji-text">${card.romaji}</span><br><span class="kana-text">${card.kana}</span><br><span class="english-text">${card.english}</span><br><br><strong>Example:</strong><br>${card.example}${card.exampleEnglish}`;
             } else {
                 flashcardElement.innerHTML = card.kanji;
             }
         }
 
-        function playAudio() {
-            const card = currentSet[currentCardIndex];
-            const utterance = new SpeechSynthesisUtterance(showingMeaning ? card.example : card.kana);
-            utterance.lang = 'ja-JP';
+function playAudio() {
+    const card = currentSet[currentCardIndex];
+    const utterance = new SpeechSynthesisUtterance(showingMeaning ? card.example : card.kana);
+    utterance.lang = 'ja-JP';
+    utterance.rate = 1; // Slower reading speed
+
+    // Fetch available voices
+    let voices = window.speechSynthesis.getVoices();
+
+    // Wait until voices are loaded (sometimes they are not loaded immediately)
+    if (voices.length === 0) {
+        window.speechSynthesis.onvoiceschanged = () => {
+            voices = window.speechSynthesis.getVoices();
+            setJapaneseVoice(utterance, voices);
             window.speechSynthesis.speak(utterance);
+        };
+    } else {
+        setJapaneseVoice(utterance, voices);
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+function setJapaneseVoice(utterance, voices) {
+    // Find the Google 日本語 voice among the available voices
+    const googleJapaneseVoice = voices.find(voice => voice.name === "Google 日本語");
+    
+    if (googleJapaneseVoice) {
+        utterance.voice = googleJapaneseVoice;
+    } else {
+        // Fallback: use the first Japanese voice available if Google 日本語 is not found
+        const otherJapaneseVoice = voices.find(voice => voice.lang === "ja-JP");
+        if (otherJapaneseVoice) {
+            utterance.voice = otherJapaneseVoice;
         }
+    }
+}
+
+
+
 
         function nextTestQuestion() {
+    // Check if we've completed all questions in the set
+    if (currentQuestion >= currentSet.length) {
+        alert(`Test complete! You got ${correctAnswers}/${currentSet.length} correct.`);
+        goBackToCatalogue();
+        return;
+    }
+
+    // Set the current card to the next one in sequence
+    currentCardIndex = currentQuestion;
+
+    const card = currentSet[currentCardIndex];
+    currentQuestion++; // Move to the next question after setting the current one
+
+    // Update the test question text
+    const testQuestionElement = document.getElementById('test-question');
+    testQuestionElement.innerHTML = `(${currentQuestion}/${currentSet.length}) What is the meaning of: ${card.kanji} (${card.kana})?`;
+
+    // Clear previous answers and generate new ones
+    const answerContainer = document.getElementById('test-answers');
+    answerContainer.innerHTML = '';
+    const correctAnswerIndex = Math.floor(Math.random() * 4);
+
+    for (let i = 0; i < 4; i++) {
+        const button = document.createElement('button');
+        button.className = 'catalogue-button';
+        if (i === correctAnswerIndex) {
+            button.innerHTML = card.english;
+            button.onclick = () => correctAnswer();
+        } else {
+            let wrongAnswer;
             do {
-                currentCardIndex = Math.floor(Math.random() * currentSet.length);
-            } while (currentCardIndex === previousCardIndex);
-            previousCardIndex = currentCardIndex;
-
-            const card = currentSet[currentCardIndex];
-            const testQuestionElement = document.getElementById('test-question');
-            testQuestionElement.innerHTML = `What is the meaning of: ${card.kanji} (${card.kana})?`;
-
-            const answerContainer = document.getElementById('test-answers');
-            answerContainer.innerHTML = '';
-            const correctAnswerIndex = Math.floor(Math.random() * 4);
-
-            for (let i = 0; i < 4; i++) {
-                const button = document.createElement('button');
-                button.className = 'catalogue-button';
-                if (i === correctAnswerIndex) {
-                    button.innerHTML = card.english;
-                    button.onclick = () => correctAnswer();
-                } else {
-                    let wrongAnswer;
-                    do {
-                        wrongAnswer = currentSet[Math.floor(Math.random() * currentSet.length)].english;
-                    } while (wrongAnswer === card.english);
-                    button.innerHTML = wrongAnswer;
-                    button.onclick = () => incorrectAnswer();
-                }
-                answerContainer.appendChild(button);
-            }
-
-            playTestAudio();
+                wrongAnswer = currentSet[Math.floor(Math.random() * currentSet.length)].english;
+            } while (wrongAnswer === card.english || wrongAnswer === undefined);
+            button.innerHTML = wrongAnswer;
+            button.onclick = () => incorrectAnswer();
         }
+        answerContainer.appendChild(button);
+    }
 
-        function playTestAudio() {
-            const card = currentSet[currentCardIndex];
-            const utterance = new SpeechSynthesisUtterance(card.kana);
-            utterance.lang = 'ja-JP';
+    playTestAudio();
+}
+
+
+function playTestAudio() {
+    const card = currentSet[currentCardIndex];
+    const utterance = new SpeechSynthesisUtterance(card.kana);
+    utterance.lang = 'ja-JP';
+    utterance.rate = 1; // Set reading speed to be slower
+
+    // Fetch available voices
+    let voices = window.speechSynthesis.getVoices();
+
+    // Wait until voices are loaded (sometimes they are not loaded immediately)
+    if (voices.length === 0) {
+        window.speechSynthesis.onvoiceschanged = () => {
+            voices = window.speechSynthesis.getVoices();
+            setJapaneseVoice(utterance, voices);
             window.speechSynthesis.speak(utterance);
-        }
+        };
+    } else {
+        setJapaneseVoice(utterance, voices);
+        window.speechSynthesis.speak(utterance);
+    }
+}
 
         function correctAnswer() {
+    correctAnswers++;
     const audio = new Audio('correct-answer-sound.mp3');
     audio.play();
     alert('Correct!');
     nextTestQuestion();
-        }
+}
 
-        function incorrectAnswer() {
-            alert('Incorrect. Try again!');
-        }
+function incorrectAnswer() {
+    alert('Incorrect. Try again!');
+}
+
 
         function goBackToCatalogue() {
+    // Hide all mode-specific containers
     document.getElementById('test-container').classList.remove('show');
     document.getElementById('flashcard-container').classList.remove('show');
+    document.getElementById('listening-container').style.display = 'none'; // Add this line
     document.getElementById('mode-container').style.display = 'none';
     document.getElementById('catalogue-container').style.display = 'flex';
+
+    // Remove preview or subset containers if they exist
     const previewContainer = document.getElementById('preview-container');
     if (previewContainer) {
         previewContainer.remove();
     }
+
+    const subSetContainer = document.getElementById('sub-set-container');
+    if (subSetContainer) {
+        subSetContainer.remove();
+    }
 }
+
+function checkListeningAnswer(selectedAnswer, correctAnswer) {
+        if (selectedAnswer === correctAnswer) {
+            correctAnswers++;
+            const correctSound = new Audio('correct-answer-sound.mp3');
+            correctSound.play();  // Play the sound for correct answer immediately
+
+            // Show a brief message instead of an alert
+            displayMessage("Correct!", true);
+
+            // Proceed to the next question after a short delay
+            setTimeout(loadListeningQuestion, 1000);
+        } else {
+            // Show a brief message instead of an alert
+            displayMessage("Incorrect. Try again!", false);
+        }
+    }
+
+    // Function for correct answers in Test Mode
+    function correctAnswer() {
+        correctAnswers++;
+        const correctSound = new Audio('correct-answer-sound.mp3');
+        correctSound.play();  // Play the sound for correct answer immediately
+
+        // Show a brief message instead of an alert
+        displayMessage("Correct!", true);
+
+        // Proceed to the next question after a short delay
+        setTimeout(nextTestQuestion, 1000);
+    }
+
+    // Function to display a message without blocking JavaScript execution
+    function displayMessage(message, isCorrect) {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        messageElement.style.position = 'fixed';
+        messageElement.style.bottom = '20px';
+        messageElement.style.left = '50%';
+        messageElement.style.transform = 'translateX(-50%)';
+        messageElement.style.padding = '10px 20px';
+        messageElement.style.backgroundColor = isCorrect ? 'black' : 'red';
+        messageElement.style.color = 'white';
+        messageElement.style.borderRadius = '8px';
+        messageElement.style.fontSize = '1.2em';
+        messageElement.style.zIndex = '1000';
+        document.body.appendChild(messageElement);
+
+        // Remove the message after 1 second
+        setTimeout(() => {
+            document.body.removeChild(messageElement);
+        }, 1000);
+    }
+
+
+
+    function startMatchingMode() {
+    // Hide other containers if they are still visible
+    document.getElementById('catalogue-container').style.display = 'none';
+    document.getElementById('mode-container').style.display = 'none';
+    document.getElementById('test-container').classList.remove('show');
+    document.getElementById('flashcard-container').classList.remove('show');
+    document.getElementById('listening-container').style.display = 'none';
+    document.getElementById('matching-container').style.display = 'flex';
+    document.querySelector('.home-button').style.display = 'block';
+
+    loadMatchingPairs();
+}
+
+
+
+function loadMatchingPairs() {
+    const matchingGameContainer = document.getElementById('matching-game');
+    matchingGameContainer.innerHTML = '';
+
+    // Randomly select 8 pairs of words
+    const selectedPairs = shuffleArray(currentSet).slice(0, 8);
+
+    // Create an array of both Japanese and English items and shuffle it
+    let items = [];
+    selectedPairs.forEach(pair => {
+        // Only display Kana for Japanese words
+        items.push({ text: pair.kana, type: 'japanese', pairId: pair.english });
+        items.push({ text: pair.english, type: 'english', pairId: pair.english });
+    });
+    items = shuffleArray(items);
+
+    // Add items to the matching game container
+    items.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'matching-item';
+        div.textContent = item.text;
+        div.dataset.pairId = item.pairId;
+        div.onclick = () => handleMatchingClick(div);
+        matchingGameContainer.appendChild(div);
+    });
+}
+
+
+let selectedItems = [];
+
+function handleMatchingClick(item) {
+    if (item.classList.contains('selected')) {
+        // Deselect item if already selected
+        item.classList.remove('selected');
+        selectedItems = selectedItems.filter(i => i !== item);
+    } else if (selectedItems.length < 2) {
+        // Select item if less than 2 are selected
+        item.classList.add('selected');
+        selectedItems.push(item);
+
+        // If two items are selected, check if they match
+        if (selectedItems.length === 2) {
+            setTimeout(checkMatch, 500); // Add a slight delay for better UX
+        }
+    }
+}
+
+
+function checkMatch() {
+    const [item1, item2] = selectedItems;
+
+    if (item1.dataset.pairId === item2.dataset.pairId) {
+        // Correct match - Remove matched items from the game immediately
+        item1.classList.add('matched');
+        item2.classList.add('matched');
+        item1.style.visibility = 'hidden';
+        item2.style.visibility = 'hidden';
+
+        // Play correct answer sound when a pair is matched
+        const correctSound = new Audio('correct-answer-sound.mp3');
+        correctSound.play();
+
+        selectedItems = [];
+
+        // Check if all items are matched
+        if (document.querySelectorAll('.matching-item:not(.matched)').length === 0) {
+            const pikachuSound = document.getElementById('pikachu-sound');
+            pikachuSound.play();
+            // Hide the matching container and return to catalogue
+            document.getElementById('matching-container').style.display = 'none';
+            goBackToCatalogue();
+        }
+    } else {
+        // Incorrect match - Deselect items after delay
+        setTimeout(() => {
+            item1.classList.remove('selected');
+            item2.classList.remove('selected');
+            selectedItems = [];
+        }, 1000);
+    }
+}
+
+
+
+
+
+function checkMatching() {
+    if (document.querySelectorAll('.matching-item.matched').length === 16) {
+        alert('You matched all the pairs correctly!');
+        goBackToCatalogue();
+    } else {
+        alert('Some pairs are not correctly matched. Try again!');
+    }
+}
+
+
+
     </script>
 
 

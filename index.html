@@ -4,6 +4,12 @@
     <title>Japanese Flashcard App</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
     <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  /* To handle container sizes properly */
+}
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(to bottom, #c9d6ff, #e2e2e2);
@@ -15,14 +21,14 @@
             flex-direction: column;
         }
         .banner {
-            background: #FDFFFD;
+            background: #ffffff;
             width: 100%;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
             font-size: 1.5em;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
             margin-top: 40px;
+            margin-bottom: 20px;
         }
         .kana-text {
             font-size: 1em; /* Shrink the font size */
@@ -37,24 +43,15 @@
             font-size: 1em; /* Shrink the font size */
             color: rgb(0, 0, 0); /* Change the color to grey */
         }
-        
         .catalogue-container {
-    text-align: center; /* Centers the heading and container content */
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    width: 80%;
-    margin: auto; /* Centers the whole container */
-}
-
-.button-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px; /* Adds spacing between buttons */
-    margin-top: 20px; /* Space between heading and buttons */
-}
-
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+        }
 
         .catalogue-button {
             padding: 12px;
@@ -142,7 +139,7 @@
             
     width: 50px;
     height: 50px;
-    background: url('https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/a4b6e106-96ea-46c2-bf39-897027ca7402/95418273-1a86-4d3d-9832-d8b87e4813c9.png') no-repeat center center;
+    background: url('https://www.fivesenseseducation.com.au/media/catalog/product/cache/6784d9c84c6c2876bb0ec06c7a104398/9/7/9781488624063_iitomo_2_2e_activity_book.jpg') no-repeat center center;
     background-size: cover;
     border: none;
     cursor: pointer;
@@ -256,34 +253,126 @@
     display: flex; /* Make the container visible */
 }
 
+.battle-container {
+    display: flex;
+    flex-direction: column;  /* Stack everything vertically */
+    align-items: center;  /* Center all elements horizontally */
+    text-align: center;
+    padding: 20px;
+}
+
+.stage {
+    display: flex;
+    justify-content: space-between;  /* Keep the boxers spaced evenly */
+    align-items: center;             /* Align items vertically in the center */
+    background: url('https://aipict.com/wp-content/uploads/2023/09/plain03-1024x683.png') no-repeat center center;
+    background-size: cover;          /* Cover the stage area */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 520px;                      /* Adjust the width to take up more space */
+    height: 330px;
+    max-width: 2000px;               /* Prevent the stage from becoming too large on big screens */
+    margin: 20px auto;               /* Center horizontally */
+    overflow: hidden;
+}
+
+
+.stage-hit {
+        background-color: red !important;  /* Force the red color for visibility */
+        transition: background-color 0.5s ease;  /* Smoothly transition back */
+    }
+
+.fighter-container {
+    display: flex;
+    flex-direction: column;  /* Stack elements inside each fighter container */
+    align-items: center;  /* Center each fighter */
+    width: 150px;  /* Adjust the width based on the size of the sprites */
+}
+
+.hp-bar {
+    width: 100%;
+    height: 15px;  /* Height of the HP bar for visibility */
+    background: #ccc;  /* Light background for the HP bar */
+    border-radius: 5px;
+    margin-bottom: 10px;  /* Space between HP bar and the boxer */
+    position: relative;
+}
+
+.hp {
+    height: 100%;
+    background: green;  /* Green bar for health */
+    width: 100%;  /* Starts fully filled */
+    transition: width 0.5s ease;  /* Smoothly decrease when hit */
+    border-radius: 5px;
+}
+
+.battle-question {
+    margin-top: 20px;
+    font-size: 1.5em;  /* Larger font size for question text */
+}
+
+.battle-answers {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    justify-content: center;  /* Center answer buttons */
+}
+
+
+.sprite-image {
+    width: 150px;  /* Adjust the size to suit your sprite */
+    height: auto;  /* Maintain the aspect ratio */
+    position: relative;
+}
+
+
+@keyframes sprite-punch {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-10px); } /* Simulate a punch motion */
+}
+
+.sprite-image.left {
+    animation: sprite-punch 2s infinite;
+}
+
+.sprite-image.right {
+    animation: sprite-punch 2s infinite;
+}
+
+#sprite-selection-container {
+    width: 80%; /* Adjust as needed for desired width */
+    height: 35%;
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; /* Add some padding for spacing */
+    background-color: #f9f9f9; /* Optional: light background for contrast */
+    border-radius: 10px; /* Optional: rounded corners for style */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+}
 
 
 
     </style>
+
+
 <script defer="" data-domain="purple-nanni-72.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script></head>
+
 <body>
     <div class="banner" style="position: relative;">
         <button class="home-button" onclick="resetAllContainers()" title="Return to Home"></button>
-        <h1 class="banner-title">2025 VCE Japanese</h1>        
+        <h1 class="banner-title">Year 8-9 Japanese: iitomo 2</h1>        
     </div>
 
-<div class="catalogue-container" id="catalogue-container">
-    <h2>Choose a set of flashcards to practice</h2>
-    <div class="button-grid">
-        <button class="catalogue-button" onclick="chooseSet(1)">日本の自然</button>
-        <button class="catalogue-button" onclick="chooseSet(2)">高校生活</button>
-        <button class="catalogue-button" onclick="chooseSet(3)">伝統の町：京都</button>
-        <button class="catalogue-button" onclick="chooseSet(4)">東京のみりょく</button>
-        <button class="catalogue-button" onclick="chooseSet(5)">Chapter 5</button>
-        <button class="catalogue-button" onclick="chooseSet(6)">Chapter 6</button>
-        <button class="catalogue-button" onclick="chooseSet(7)">Not ready</button>
-        <button class="catalogue-button" onclick="chooseSet(8)">Not ready</button>
-        <button class="catalogue-button" onclick="chooseSet(9)">Not ready</button>
-        <button class="catalogue-button" onclick="chooseSet(10)">Not ready</button>
-        <button class="catalogue-button" onclick="chooseSet(11)">VCE Kanji</button>
-        <button class="catalogue-button" onclick="chooseSet(12)">Advanced</button>
+    <div class="catalogue-container" id="catalogue-container">
+        <h2>Choose a set of flashcards to practice</h2>
+        <button class="catalogue-button" onclick="chooseSet(1)">Hobbies</button>
+        <button class="catalogue-button" onclick="chooseSet(2)">Food</button>
+        <button class="catalogue-button" onclick="chooseSet(3)">Time & Hour</button>
+        <button class="catalogue-button" onclick="chooseSet(4)">School</button>
+        <button class="catalogue-button" onclick="chooseSet(5)">Not Ready</button>
+        <button class="catalogue-button" onclick="chooseSet(6)">Not Ready</button>
     </div>
-</div>
 
     <div class="mode-container" id="mode-container">
         <h2>Choose a mode to practice</h2>
@@ -291,9 +380,86 @@
         <button class="catalogue-button" onclick="startTestMode()">Test Mode</button>
         <button class="catalogue-button" onclick="startListeningMode()">Listening Mode</button>
         <button class="catalogue-button" onclick="startMatchingMode()">Matching Mode</button>
+        <button class="catalogue-button" onclick="startBattleMode()">Battle Mode</button>
 
     </div>
     
+
+
+
+    <div id="battle-container" class="battle-container" style="display: none;">
+        <h2>Battle Mode</h2>
+        <!-- BGM and other elements as in the original code -->
+        <div class="stage">
+            <!-- User Boxer and HP Container -->
+            <div class="fighter-container">
+                <div class="hp-bar">
+                    <div class="hp" id="user-hp"></div>
+                </div>
+                <div class="boxer" id="user-boxer">
+                    <img src="" alt="User Sprite" class="sprite-image"> <!-- src is set dynamically -->
+                </div>
+            </div>
+    
+            <!-- NPC Boxer and HP Container -->
+            <div class="fighter-container">
+                <div class="hp-bar">
+                    <div class="hp" id="npc-hp"></div>
+                </div>
+                <div class="boxer" id="npc-boxer">
+                    <img src="" alt="NPC Sprite" class="sprite-image"> <!-- src is set dynamically -->
+                </div>
+            </div>
+        </div>
+    
+        <!-- Questions and answers go here -->
+        <div id="battle-question" class="battle-question"></div>
+        <div id="battle-answers" class="battle-answers"></div>
+    </div>
+    
+    
+
+        <audio id="battle-bgm" loop>
+            <source src="pokebgm1.mp3" type="audio/mpeg">
+            <source src="pokebgm2.mp3" type="audio/mpeg">
+            <source src="pokebgm3.mp3" type="audio/mpeg">
+        </audio>
+
+
+        <audio id="pikachu-2-sound">
+            <source src="pikachu-2-sound.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+        <audio id="tackle-sound">
+            <source src="tackle-sound.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="victory-sound">
+            <source src="victory-sound.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+
+
+        <div id="sprite-selection-container" class="catalogue-container" style="display: none;">
+            <h2>Select Your Pokémon</h2>
+            <div id="available-sprites" class="battle-answers"></div>
+        </div>
+
+        
+
+    
+        <!-- Question Section below the stage -->
+        <div id="battle-question" class="battle-question" style="margin-top: 20px; font-size: 1.5em;"></div>
+        <div id="battle-answers" class="battle-answers" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;"></div>
+    </div>
+    
+    
+
+
+
+
     <div class="listening-container" id="listening-container" style="display: none;">
         <h2>Listening Mode</h2>
         <p>Click to hear the Japanese sentence, then choose the word being used in the sentence.</p>
@@ -330,6 +496,7 @@
     let totalQuestions = 15;
     let currentQuestion = 0;
     let correctAnswers = 0;
+    
 
     function startListeningMode() {
     document.getElementById('mode-container').style.display = 'none';
@@ -431,116 +598,92 @@ function checkListeningAnswer(selectedAnswer, correctAnswer) {
         const vocabularySets = {
             
             1: [
-                { kanji: "砂漠", kana: "さばく", romaji: "sabaku", english: "Desert", example: "さばくは広くて、乾燥しています。", exampleEnglish: "The desert is vast and dry." },
-                { kanji: "四季", kana: "しき", romaji: "shiki", english: "Four seasons", example: "日本には四季があります。", exampleEnglish: "Japan has four seasons." },
-                { kanji: "季節", kana: "きせつ", romaji: "kisetsu", english: "Season", example: "春は私の好きな季節です。", exampleEnglish: "Spring is my favorite season." },
-                { kanji: "乾燥", kana: "かんそう", romaji: "kansou", english: "Dryness", example: "冬は空気が乾燥しています。", exampleEnglish: "The air is dry in winter." },
-                { kanji: "むし暑い", kana: "むしあつい", romaji: "mushiatsui", english: "Humid and hot", example: "夏はむし暑くて大変です。", exampleEnglish: "Summer is humid and tough." },
-                { kanji: "平均気温", kana: "へいきんきおん", romaji: "heikin kion", english: "Average temperature", example: "東京の平均気温は15度です。", exampleEnglish: "The average temperature in Tokyo is 15 degrees." },
-                { kanji: "囲まれる", kana: "かこまれる", romaji: "kakomareru", english: "To be surrounded", example: "島国とは、海にかこまれている国です。", exampleEnglish: "An island country is one surrounded by the sea." },
-                { kanji: "と同じで", kana: "とおなじで", romaji: "to onaji de", english: "The same as", example: "兄と同じで、私はサッカーが好きです。", exampleEnglish: "Like my brother, I also like soccer." },
-                { kanji: "と違って", kana: "とちがって", romaji: "to chigatte", english: "Different from", example: "夏と違って、冬は寒いです。", exampleEnglish: "Unlike summer, winter is cold." },
-                { kanji: "と似ていて", kana: "とにていて", romaji: "to niteite", english: "Similar to", example: "春と秋は気温が似ています。", exampleEnglish: "Spring and autumn have similar temperatures." },
-                { kanji: "森林浴", kana: "しんりんよく", romaji: "shinrinyoku", english: "Forest bathing", example: "週末に森林浴を楽しみました。", exampleEnglish: "I enjoyed forest bathing on the weekend." },
-                { kanji: "楽しむ", kana: "たのしむ", romaji: "tanoshimu", english: "To enjoy", example: "ゆたかな日本の自ぜんを楽しもうと思います。", exampleEnglish: "I want to enjoy Japan's rich nature." },
-                { kanji: "火山", kana: "かざん", romaji: "kazan", english: "Volcano", example: "日本には多くの火山があります。", exampleEnglish: "Japan has many volcanoes." },
-                { kanji: "南半球", kana: "みなみはんきゅう", romaji: "minami hankyuu", english: "Southern Hemisphere", example: "オーストラリアは南半球にあります。", exampleEnglish: "Australia is in the Southern Hemisphere." },
-                { kanji: "によって", kana: "によって", romaji: "niyotte", english: "Depending on", example: "オーストラリアの四季は場所によって違います。", exampleEnglish: "Australia's seasons vary depending on the location." },
-                { kanji: "咲く", kana: "さく", romaji: "saku", english: "To bloom", example: "春には桜が咲いています。", exampleEnglish: "Cherry blossoms bloom in spring." },
-                { kanji: "紅葉", kana: "こうよう", romaji: "kouyou", english: "Autumn leaves", example: "秋には紅葉がきれいです。", exampleEnglish: "The autumn leaves are beautiful in fall." },
-                { kanji: "温泉", kana: "おんせん", romaji: "onsen", english: "Hot spring", example: "温泉に入ってリラックスしました。", exampleEnglish: "I relaxed by soaking in a hot spring." },
-                { kanji: "地震", kana: "じしん", romaji: "jishin", english: "Earthquake", example: "日本では地震がよくあります。", exampleEnglish: "Earthquakes often occur in Japan." },
-                { kanji: "サル", kana: "さる", romaji: "saru", english: "Monkey", example: "山でサルを見ました。", exampleEnglish: "I saw monkeys in the mountains." },
-                { kanji: "鶴", kana: "つる", romaji: "tsuru", english: "Crane", example: "鶴は日本のシンボルです。", exampleEnglish: "The crane is a symbol of Japan." },
-                { kanji: "地域", kana: "ちいき", romaji: "chiiki", english: "Region", example: "この地域にはたくさんの自然があります。", exampleEnglish: "There is a lot of nature in this region." },
-                { kanji: "約", kana: "やく", romaji: "yaku", english: "Approximately", example: "この川の長さは約500キロです。", exampleEnglish: "The length of this river is approximately 500 kilometers." },
-                { kanji: "野生動物", kana: "やせいどうぶつ", romaji: "yasei doubutsu", english: "Wild animal", example: "野生動物を見ることができます。", exampleEnglish: "You can see wild animals." },
-                { kanji: "スキー場", kana: "すきーじょう", romaji: "sukiijou", english: "Ski resort", example: "冬にはスキー場に行きます。", exampleEnglish: "I go to the ski resort in winter." }
+                { kanji: "私", kana: "わたし", romaji: "watashi", english: "I, me", example: "私は学生です。",  exampleEnglish: "I am a student." },
+                { kanji: "行(い)きます", kana: "いきます", romaji: "ikimasu", english: "To go", example: "かいものに行きます。", exampleEnglish: "I go shopping." },
+                { kanji: "します", kana: "します", romaji: "shimasu", english: "To do", example: "しゅくだいをします。",  exampleEnglish: "I do homework." },
+                { kanji: "聞(き)きます", kana: "ききます", romaji: "kikimasu", english: "To listen", example: "おんがくを聞きます。",  exampleEnglish: "I listen to music." },
+                { kanji: "読(よ)みます", kana: "よみます", romaji: "yomimasu", english: "To read", example: "まんがを読みます。", exampleEnglish: "I read a comic book." },
+                { kanji: "見(み)ます", kana: "みます", romaji: "mimasu", english: "To see/watch", example: "えいがを見ます。",  exampleEnglish: "I watch a movie." },
+                { kanji: "起(お)きます", kana: "おきます", romaji: "okimasu", english: "To wake up", example: "毎朝はやく起きます。",  exampleEnglish: "I wake up early every morning." },
+                { kanji: "寝(ね)ます", kana: "ねます", romaji: "nemasu", english: "To sleep", example: "夜おそく寝ます。",  exampleEnglish: "I sleep late at night." },
+                { kanji: "習(なら)います", kana: "ならいます", romaji: "naraimasu", english: "To learn", example: "日本語を習います。",  exampleEnglish: "I learn Japanese." },
+                { kanji: "買(か)います", kana: "かいます", romaji: "kaimasu", english: "To buy", example: "本を買います。",  exampleEnglish: "I buy a book." },
+                { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本がきらいです。",  exampleEnglish: "I hate books." },
+                { kanji: "水泳(すいえい)", kana: "すいえい", romaji: "suiei", english: "Swimming", example: "すいえいがすきです。",  exampleEnglish: "I like swimming." },
+                { kanji: "公園(こうえん)", kana: "こうえん", romaji: "kouen", english: "Park", example: "こうえんでテニスをします。",  exampleEnglish: "I play tennis at the park." },
+                { kanji: "ウォン先生(せんせい)", kana: "うぉんせんせい", romaji: "wonsensei", english: "Mr Wong", example: "ウォン先生は日本語をおしえます。",  exampleEnglish: "Mr Wong teaches Japanese." },
+          
             ],
 
             2: [
-                { kanji: "高校生活", kana: "こうこうせいかつ", romaji: "koukou seikatsu", english: "High school life", example: "高校生活は楽しいです。", exampleEnglish: "High school life is enjoyable." },
-                { kanji: "授業", kana: "じゅぎょう", romaji: "jugyou", english: "Class/Lesson", example: "午前中に授業があります。", exampleEnglish: "There are classes in the morning." },
-                { kanji: "それぞれの", kana: "それぞれの", romaji: "sorezore no", english: "Each", example: "それぞれの生徒に課題があります。", exampleEnglish: "Each student has an assignment." },
-                { kanji: "廊下", kana: "ろうか", romaji: "rouka", english: "Hallway", example: "廊下を静かに歩きましょう。", exampleEnglish: "Let's walk quietly in the hallway." },
-                { kanji: "午後", kana: "ごご", romaji: "gogo", english: "Afternoon", example: "午後にテニスをします。", exampleEnglish: "I play tennis in the afternoon." },
-                { kanji: "始まる", kana: "はじまる", romaji: "hajimaru", english: "To start", example: "授業は九時に始まります。", exampleEnglish: "The class starts at nine." },
-                { kanji: "朝一番", kana: "あさいちばん", romaji: "asa ichiban", english: "First thing in the morning", example: "朝一番に掃除をします。", exampleEnglish: "I clean first thing in the morning." },
-                { kanji: "教室", kana: "きょうしつ", romaji: "kyoushitsu", english: "Classroom", example: "教室で勉強します。", exampleEnglish: "I study in the classroom." },
-                { kanji: "体育", kana: "たいいく", romaji: "taiiku", english: "Physical education", example: "体育の授業でバスケットボールをしました。", exampleEnglish: "We played basketball in P.E. class." },
-                { kanji: "科学", kana: "かがく", romaji: "kagaku", english: "Science", example: "科学の実験が好きです。", exampleEnglish: "I like science experiments." },
-                { kanji: "化学", kana: "かがく", romaji: "kagaku", english: "Chemistry", example: "化学の授業で新しい実験をしました。", exampleEnglish: "We did a new experiment in chemistry class." },
-                { kanji: "真剣な", kana: "しんけんな", romaji: "shinkenna", english: "Serious", example: "彼は勉強に真剣です。", exampleEnglish: "He is serious about his studies." },
-                { kanji: "生物", kana: "せいぶつ", romaji: "seibutsu", english: "Biology", example: "生物の授業で動物について学びました。", exampleEnglish: "We learned about animals in biology class." },
-                { kanji: "国語", kana: "こくご", romaji: "kokugo", english: "National language", example: "国語の授業では日本語を勉強します。", exampleEnglish: "We study Japanese in national language class." },
-                { kanji: "社会", kana: "しゃかい", romaji: "shakai", english: "Social studies", example: "社会の授業で歴史を学びました。", exampleEnglish: "We studied history in social studies." },
-                { kanji: "書道", kana: "しょどう", romaji: "shodou", english: "Calligraphy", example: "書道の時間に筆で字を書きました。", exampleEnglish: "We wrote characters with a brush during calligraphy time." },
-                { kanji: "必修科目", kana: "ひっしゅうかもく", romaji: "hisshuu kamoku", english: "Required subject", example: "数学は必修科目です。", exampleEnglish: "Mathematics is a required subject." },
-                { kanji: "選択科目", kana: "せんたくかもく", romaji: "sentaku kamoku", english: "Elective subject", example: "音楽は選択科目です。", exampleEnglish: "Music is an elective subject." },
-                { kanji: "売店", kana: "ばいてん", romaji: "baiten", english: "School store", example: "売店でお菓子を買いました。", exampleEnglish: "I bought snacks at the school store." },
-                { kanji: "持ってくる", kana: "もってくる", romaji: "mottekuru", english: "To bring", example: "明日、本を持ってきてください。", exampleEnglish: "Please bring the book tomorrow." },
-                { kanji: "部活", kana: "ぶかつ", romaji: "bukatsu", english: "Club activity", example: "部活でサッカーをしています。", exampleEnglish: "I play soccer in my club activity." },
-                { kanji: "塾", kana: "じゅく", romaji: "juku", english: "Cram school", example: "夕方から塾に行きます。", exampleEnglish: "I go to cram school in the evening." },
-                { kanji: "夕方", kana: "ゆうがた", romaji: "yuugata", english: "Evening", example: "夕方に散歩をしました。", exampleEnglish: "I took a walk in the evening." },
-                { kanji: "夜遅く", kana: "よるおそく", romaji: "yoru osoku", english: "Late at night", example: "夜遅くまで勉強しました。", exampleEnglish: "I studied until late at night." },
-                { kanji: "五時間目", kana: "ごじかんめ", romaji: "go jikan me", english: "Fifth period", example: "五時間目は英語の授業です。", exampleEnglish: "The fifth period is an English class." },
-                { kanji: "自習", kana: "じしゅう", romaji: "jishuu", english: "Self-study", example: "放課後に自習をしました。", exampleEnglish: "I did self-study after school." },
-                { kanji: "放課後", kana: "ほうかご", romaji: "houkago", english: "After school", example: "放課後に部活があります。", exampleEnglish: "There is a club activity after school." },
-                { kanji: "文章", kana: "ぶんしょう", romaji: "bunshou", english: "Text/Sentence", example: "文章を書くのが好きです。", exampleEnglish: "I like writing texts." },
-                { kanji: "黒板", kana: "こくばん", romaji: "kokuban", english: "Blackboard", example: "先生は黒板に字を書きました。", exampleEnglish: "The teacher wrote on the blackboard." }
+                { kanji: "食べます", kana: "たべます", romaji: "tabemasu", english: "To eat", example: "ご飯を食べます。", exampleRomaji: "Gohan o tabemasu.", exampleEnglish: "I eat rice." },
+                { kanji: "飲みます", kana: "のみます", romaji: "nomimasu", english: "To drink", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
+                { kanji: "朝ごはん", kana: "あさごはん", romaji: "asagohan", english: "Breakfast", example: "朝ごはんを食べます。", exampleRomaji: "Asagohan o tabemasu.", exampleEnglish: "I eat breakfast." },
+                { kanji: "昼ごはん", kana: "ひるごはん", romaji: "hirugohan", english: "Lunch", example: "昼ごはんを食べます。", exampleRomaji: "Hirugohan o tabemasu.", exampleEnglish: "I eat lunch." },
+                { kanji: "晩ごはん", kana: "ばんごはん", romaji: "bangohan", english: "Dinner", example: "晩ごはんを食べます。", exampleRomaji: "Bangohan o tabemasu.", exampleEnglish: "I eat dinner." },
+                { kanji: "パン", kana: "ぱん", romaji: "pan", english: "Bread", example: "パンを食べます。", exampleRomaji: "Pan o tabemasu.", exampleEnglish: "I eat bread." },
+                { kanji: "卵(たまご)", kana: "たまご", romaji: "tamago", english: "Egg", example: "卵をりょうりします。", exampleRomaji: "Tamago o ryouri shimasu.", exampleEnglish: "I cook eggs." },
+                { kanji: "肉", kana: "にく", romaji: "niku", english: "Meat", example: "肉が好きです。", exampleRomaji: "Niku ga suki desu.", exampleEnglish: "I like meat." },
+                { kanji: "魚", kana: "さかな", romaji: "sakana", english: "Fish", example: "魚を食べます。", exampleRomaji: "Sakana o tabemasu.", exampleEnglish: "I eat fish." },
+                { kanji: "野菜(やさい)", kana: "やさい", romaji: "yasai", english: "Vegetable", example: "野菜を食べます。", exampleRomaji: "Yasai o tabemasu.", exampleEnglish: "I eat vegetables." },
+                { kanji: "果物(くだもの)", kana: "くだもの", romaji: "kudamono", english: "Fruit", example: "果物を食べます。", exampleRomaji: "Kudamono o tabemasu.", exampleEnglish: "I eat fruits." },
+                { kanji: "水", kana: "みず", romaji: "mizu", english: "Water", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
+                { kanji: "お茶(おちゃ)", kana: "おちゃ", romaji: "ocha", english: "Tea", example: "お茶を飲みます。", exampleRomaji: "Ocha o nomimasu.", exampleEnglish: "I drink tea." },
+                { kanji: "牛乳(ぎゅうにゅう)", kana: "ぎゅうにゅう", romaji: "gyuunyuu", english: "Milk", example: "牛乳を飲みます。", exampleRomaji: "Gyuunyuu o nomimasu.", exampleEnglish: "I drink milk." },
+                { kanji: "おいしい", kana: "おいしい", romaji: "oishii", english: "Delicious", example: "おべんとうはおいしいです。", exampleEnglish: "The bento is delicious." },
+                { kanji: "食べ物", kana: "たべもの", romaji: "tabemono", english: "Food", example: "食べ物がたくさんあります。", exampleEnglish: "There is a lot of food." },
+
             ],
 
             3: [
-                { kanji: "伝統的な", kana: "でんとうてきな", romaji: "dentoutekina", english: "Traditional", example: "日本の伝統的な料理を食べました。", exampleEnglish: "I ate traditional Japanese food." },
-                { kanji: "人力車", kana: "じんりきしゃ", romaji: "jinrikisha", english: "Rickshaw", example: "京都で人力車に乗りました。", exampleEnglish: "I rode a rickshaw in Kyoto." },
-                { kanji: "ふで", kana: "ふで", romaji: "fude", english: "Brush", example: "書道でふでを使います。", exampleEnglish: "We use a brush in calligraphy." },
-                { kanji: "ゆっくり", kana: "ゆっくり", romaji: "yukkuri", english: "Slowly", example: "お茶をゆっくり飲みましょう。", exampleEnglish: "Let's drink tea slowly." },
-                { kanji: "直接", kana: "ちょくせつ", romaji: "chokusetsu", english: "Directly", example: "先生に直接聞きました。", exampleEnglish: "I asked the teacher directly." },
-                { kanji: "茶道", kana: "さどう", romaji: "sadou", english: "Tea ceremony", example: "茶道を学びました。", exampleEnglish: "I learned about the tea ceremony." },
-                { kanji: "文字", kana: "もじ", romaji: "moji", english: "Character", example: "漢字は日本の文字です。", exampleEnglish: "Kanji are Japanese characters." },
-                { kanji: "意味", kana: "いみ", romaji: "imi", english: "Meaning", example: "この言葉の意味を教えてください。", exampleEnglish: "Please tell me the meaning of this word." },
-                { kanji: "言葉", kana: "ことば", romaji: "kotoba", english: "Word/Language", example: "新しい言葉を覚えました。", exampleEnglish: "I learned a new word." },
-                { kanji: "生け花", kana: "いけばな", romaji: "ikebana", english: "Flower arrangement", example: "生け花を体験しました。", exampleEnglish: "I experienced flower arrangement." },
-                { kanji: "お茶の点て方", kana: "おちゃのたてかた", romaji: "ocha no tatekata", english: "How to make tea", example: "お茶の点て方を教わりました。", exampleEnglish: "I was taught how to make tea." },
-                { kanji: "記念写真", kana: "きねんしゃしん", romaji: "kinen shashin", english: "Commemorative photo", example: "友達と記念写真を撮りました。", exampleEnglish: "I took a commemorative photo with my friends." },
-                { kanji: "メイク", kana: "めいく", romaji: "meiku", english: "Makeup", example: "イベントのためにメイクをしました。", exampleEnglish: "I did my makeup for the event." },
-                { kanji: "浴衣", kana: "ゆかた", romaji: "yukata", english: "Yukata", example: "夏祭りで浴衣を着ました。", exampleEnglish: "I wore a yukata at the summer festival." },
-                { kanji: "体験する", kana: "たいけんする", romaji: "taiken suru", english: "To experience", example: "日本文化を体験しました。", exampleEnglish: "I experienced Japanese culture." },
-                { kanji: "経験する", kana: "けいけんする", romaji: "keiken suru", english: "To experience (general)", example: "新しい仕事を経験しました。", exampleEnglish: "I experienced a new job." },
-                { kanji: "学ぶ", kana: "まなぶ", romaji: "manabu", english: "To learn", example: "歴史を学びます。", exampleEnglish: "I learn history." },
-                { kanji: "持ち帰る", kana: "もちかえる", romaji: "mochikaeru", english: "To take home", example: "お土産を持ち帰りました。", exampleEnglish: "I took home a souvenir." },
-                { kanji: "思い出", kana: "おもいで", romaji: "omoide", english: "Memory", example: "旅行は良い思い出になりました。", exampleEnglish: "The trip became a good memory." },
-                { kanji: "所", kana: "ところ", romaji: "tokoro", english: "Place", example: "面白い所を見つけました。", exampleEnglish: "I found an interesting place." },
-                { kanji: "料金", kana: "りょうきん", romaji: "ryoukin", english: "Fee", example: "入場料金はいくらですか。", exampleEnglish: "How much is the admission fee?" },
-                { kanji: "よやくする", kana: "よやくする", romaji: "yoyaku suru", english: "To reserve", example: "ホテルをよやくしました。", exampleEnglish: "I reserved a hotel." },
-                { kanji: "明後日", kana: "あさって", romaji: "asatte", english: "Day after tomorrow", example: "明後日に行きます。", exampleEnglish: "I will go the day after tomorrow." },
-                { kanji: "道具", kana: "どうぐ", romaji: "dougu", english: "Tool", example: "料理にはいろいろな道具が必要です。", exampleEnglish: "Various tools are needed for cooking." }
+            { kanji: "入ります", kana: "はいります", romaji: "hairimasu", english: "To enter", example: "おふろにはいります。", exampleEnglish: "I enter a bath." },
+            { kanji: "あびます", kana: "あびます", romaji: "abimasu", english: "To shower", example: "シャワーをあびます。", exampleEnglish: "I take a shower." },
+            { kanji: "帰(かえ)ります", kana: "かえります", romaji: "kaerimasu", english: "To return", example: "うちに帰ります。", exampleEnglish: "I return home." },
+            { kanji: "毎日", kana: "まいにち", romaji: "mainichi", english: "Every day", example: "毎日ぶかつをします。", exampleEnglish: "Every day I do club activities." },
+            { kanji: "何時", kana: "なんじ", romaji: "nanji", english: "What time", example: "今、何時ですか。", exampleEnglish: "What time is it now?" },
+            { kanji: "半", kana: "はん", romaji: "han", english: "Half", example: "今、三時半です。", exampleEnglish: "Now, it is 3:30." },
+            { kanji: "そして", kana: "そして", romaji: "soshite", english: "And then", example: "そして、くじにテレビを見ます。", exampleEnglish: "And then, I watch TV at 9:00." },
+            { kanji: "土曜日", kana: "どようび", romaji: "doyoubi", english: "Saturday", example: "土曜日もぶかつをします。", exampleEnglish: "I also do club activities on Saturday." },
+            { kanji: "木曜日", kana: "もくようび", romaji: "mokuyoubi", english: "Thursday", example: "木曜日にけんどうをします。", exampleEnglish: "I do Kendo on Thursday." },
+            { kanji: "時", kana: "じ", romaji: "ji", english: "Time/hour", example: "じゅうじにねます。", exampleEnglish: "I sleep at 10:00." },
+            { kanji: "好き", kana: "すき", romaji: "suki", english: "To like", example: "おんがくが好きです。", exampleEnglish: "I like music." },
+            { kanji: "学校(がっこう)", kana: "がっこう", romaji: "gakkou", english: "School", example: "学校で勉強します。",  exampleEnglish: "I study at school." }
             ],
 
             4: [
-                { kanji: "現代的な", kana: "げんだいてきな", romaji: "gendai tekina", english: "Modern", example: "この建物は現代的なデザインです。", exampleEnglish: "This building has a modern design." },
-                { kanji: "紹介する", kana: "しょうかいする", romaji: "shoukai suru", english: "To introduce", example: "友達を紹介します。", exampleEnglish: "I will introduce my friend." },
-                { kanji: "原宿", kana: "はらじゅく", romaji: "harajuku", english: "Harajuku", example: "原宿でショッピングを楽しみました。", exampleEnglish: "I enjoyed shopping in Harajuku." },
-                { kanji: "そめる", kana: "そめる", romaji: "someru", english: "To dye", example: "髪を赤にそめました。", exampleEnglish: "I dyed my hair red." },
-                { kanji: "わかもの", kana: "わかもの", romaji: "wakamono", english: "Young people", example: "わかものはファッションに興味があります。", exampleEnglish: "Young people are interested in fashion." },
-                { kanji: "文化", kana: "ぶんか", romaji: "bunka", english: "Culture", example: "日本の文化に興味があります。", exampleEnglish: "I am interested in Japanese culture." },
-                { kanji: "目立つ", kana: "めだつ", romaji: "medatsu", english: "To stand out", example: "彼の服はとても目立ちます。", exampleEnglish: "His clothes really stand out." },
-                { kanji: "ユニークな", kana: "ゆにーくな", romaji: "yuni-ku na", english: "Unique", example: "彼女のスタイルはユニークです。", exampleEnglish: "Her style is unique." },
-                { kanji: "このような", kana: "このような", romaji: "kono you na", english: "Like this", example: "このような問題は難しいです。", exampleEnglish: "Problems like this are difficult." },
-                { kanji: "話題の", kana: "わだいの", romaji: "wadai no", english: "Trending", example: "話題のレストランに行きました。", exampleEnglish: "I went to a trending restaurant." },
-                { kanji: "味", kana: "あじ", romaji: "aji", english: "Flavor/Taste", example: "このスープはとても良い味です。", exampleEnglish: "This soup has a very good taste." },
-                { kanji: "お守り", kana: "おまもり", romaji: "omamori", english: "Amulet", example: "神社でお守りを買いました。", exampleEnglish: "I bought an amulet at the shrine." },
-                { kanji: "おみくじ", kana: "おみくじ", romaji: "omikuji", english: "Fortune slip", example: "おみくじを引いて運勢を占いました。", exampleEnglish: "I drew a fortune slip to see my luck." },
-                { kanji: "叶う", kana: "かなう", romaji: "kanau", english: "To come true", example: "夢が叶いました。", exampleEnglish: "My dream came true." },
-                { kanji: "平日", kana: "へいじつ", romaji: "heijitsu", english: "Weekday", example: "平日は忙しいです。", exampleEnglish: "Weekdays are busy." },
-                { kanji: "休日", kana: "きゅうじつ", romaji: "kyuujitsu", english: "Holiday", example: "休日に家族と出かけました。", exampleEnglish: "I went out with my family on a holiday." },
-                { kanji: "個性的な", kana: "こせいてきな", romaji: "kosei tekina", english: "Individualistic", example: "彼の服はとても個性的です。", exampleEnglish: "His clothes are very individualistic." },
-                { kanji: "びっくりする", kana: "びっくりする", romaji: "bikkuri suru", english: "To be surprised", example: "彼の発言にびっくりしました。", exampleEnglish: "I was surprised by his statement." },
-                { kanji: "洋服", kana: "ようふく", romaji: "youfuku", english: "Western clothes", example: "新しい洋服を買いました。", exampleEnglish: "I bought new Western clothes." },
-                { kanji: "観光客", kana: "かんこうきゃく", romaji: "kankou kyaku", english: "Tourist", example: "京都には多くのかんこうきゃくがいます。", exampleEnglish: "There are many tourists in Kyoto." },
-                { kanji: "参加する", kana: "さんかする", romaji: "sanka suru", english: "To participate", example: "友達とイベントにさんかしました。", exampleEnglish: "I participated in the event with my friends." }
-            ],
+            { kanji: "小学校", kana: "しょうがっこう", romaji: "shougakkou", english: "primary school", example: "小学校に行きます。", exampleEnglish: "I go to primary school." },
+            { kanji: "中学校", kana: "ちゅうがっこう", romaji: "chuugakkou", english: "junior high school", example: "中学校で勉強します。", exampleEnglish: "I study at junior high school." },
+            { kanji: "高校", kana: "こうこう", romaji: "koukou", english: "senior high school", example: "高校はとても楽しいです。", exampleEnglish: "Senior high school is very fun." },
+            { kanji: "大学", kana: "だいがく", romaji: "daigaku", english: "university", example: "大学に入学しました。", exampleEnglish: "I entered university." },
+            { kanji: "何年生", kana: "なんねんせい", romaji: "nan-nensei", english: "what grade", example: "あなたは何年生ですか。", exampleEnglish: "What grade are you in?" },
+            { kanji: "小学生", kana: "しょうがくせい", romaji: "shougakusei", english: "primary school student", example: "私は小学生です。", exampleEnglish: "I am a primary school student." },
+            { kanji: "中学生", kana: "ちゅうがくせい", romaji: "chuugakusei", english: "junior high school student", example: "妹は中学生です。", exampleEnglish: "My younger sister is a junior high school student." },
+            { kanji: "高校生", kana: "こうこうせい", romaji: "koukousei", english: "senior high school student", example: "兄は高校生です。", exampleEnglish: "My older brother is a senior high school student." },
+            { kanji: "かもく", kana: "かもく", romaji: "kamoku", english: "school subjects", example: "私の好きな科目は数学です。", exampleEnglish: "My favorite school subject is mathematics." },
+            { kanji: "英語", kana: "えいご", romaji: "eigo", english: "English", example: "英語のクラスがあります。", exampleEnglish: "There is an English class." },
+            { kanji: "国語", kana: "こくご", romaji: "kokugo", english: "national language", example: "国語を勉強します。", exampleEnglish: "I study the national language." },
+            { kanji: "すう学", kana: "すうがく", romaji: "suugaku", english: "mathematics", example: "数学はむずかしいです。", exampleEnglish: "Mathematics is difficult." },
+            { kanji: "音楽", kana: "おんがく", romaji: "ongaku", english: "music", example: "音楽のじゅぎょうが楽しいです。", exampleEnglish: "Music class is fun." },
+            { kanji: "りか", kana: "りか", romaji: "rika", english: "science", example: "理科でじっけんをしました。", exampleEnglish: "We did an experiment in science." },
+            { kanji: "びじゅつ", kana: "びじゅつ", romaji: "bijutsu", english: "art", example: "美術の宿題があります。", exampleEnglish: "I have art homework." },
+            { kanji: "体いく", kana: "たいいく", romaji: "taiiku", english: "PE", example: "体育のじゅぎょうでサッカーをしました。", exampleEnglish: "We played soccer in PE class." },
+            { kanji: "ぎじゅつ", kana: "ぎじゅつ", romaji: "gijutsu", english: "technology", example: "技術のクラスで木工をしました。", exampleEnglish: "We did woodworking in technology class." },
+            { kanji: "社会", kana: "しゃかい", romaji: "shakai", english: "social sciences", example: "社会で歴史を学びます。", exampleEnglish: "We learn history in social sciences." },
+            { kanji: "家ていか", kana: "かていか", romaji: "kateika", english: "home economics", example: "家庭科で料理を作りました。", exampleEnglish: "We cooked in home economics." },
+            { kanji: "どうとく", kana: "どうとく", romaji: "doutoku", english: "ethics", example: "どうとくで正直について学びました。", exampleEnglish: "We learned about honesty in ethics." },
+            { kanji: "ちょっと", kana: "ちょっと", romaji: "chotto", english: "a little", example: "ちょっと待ってください。", exampleEnglish: "Please wait a little." },
+            { kanji: "時間目", kana: "じかんめ", romaji: "jikanme", english: "period", example: "一時間目は英語です。", exampleEnglish: "The first period is English." },
+            { kanji: "何時間目", kana: "なんじかんめ", romaji: "nan jikanme", english: "which period", example: "何時間目にりかがありますか。", exampleEnglish: "In which period do you have science?" },
+            { kanji: "昼休み", kana: "ひるやすみ", romaji: "hiruyasumi", english: "lunch break", example: "昼休みに友達とあそびます。", exampleEnglish: "I play with my friends during lunch break." },
+            { kanji: "から", kana: "から", romaji: "kara", english: "from", example: "じゅぎょうはくじからです。", exampleEnglish: "Class starts from 9 o'clock." },
+            { kanji: "まで", kana: "まで", romaji: "made", english: "to/until", example: "じゅぎょうは3時までです。", exampleEnglish: "Class is until 3 o'clock." },
+            { kanji: "時間わり", kana: "じかんわり", romaji: "jikanwari", english: "timetable", example: "時間わりを見てください。", exampleEnglish: "Please look at the timetable." },
+            { kanji: "そうじ", kana: "そうじ", romaji: "souji", english: "cleaning", example: "そうじをしました。", exampleEnglish: "I did cleaning." },
 
+
+
+
+            ],            
             5: [
                 { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
                 { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
@@ -554,78 +697,6 @@ function checkListeningAnswer(selectedAnswer, correctAnswer) {
                 { kanji: "友人", kana: "ゆうじん", romaji: "yuujin", english: "Friend", example: "友人に会います。", exampleRomaji: "Yuujin ni aimasu.", exampleEnglish: "I meet my friend." }
             ],            
             6: [
-                { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
-                { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
-                { kanji: "猫", kana: "ねこ", romaji: "neko", english: "Cat", example: "猫が好きです。", exampleRomaji: "Neko ga suki desu.", exampleEnglish: "I like cats." },
-                { kanji: "家", kana: "いえ", romaji: "ie", english: "House", example: "家に帰ります。", exampleRomaji: "Ie ni kaerimasu.", exampleEnglish: "I return home." },
-                { kanji: "食べる", kana: "たべる", romaji: "taberu", english: "To eat", example: "ご飯を食べます。", exampleRomaji: "Gohan o tabemasu.", exampleEnglish: "I eat a meal." },
-                { kanji: "飲む", kana: "のむ", romaji: "nomu", english: "To drink", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
-                { kanji: "行く", kana: "いく", romaji: "iku", english: "To go", example: "学校に行きます。", exampleRomaji: "Gakkou ni ikimasu.", exampleEnglish: "I go to school." },
-                { kanji: "見る", kana: "みる", romaji: "miru", english: "To see", example: "映画を見ます。", exampleRomaji: "Eiga o mimasu.", exampleEnglish: "I watch a movie." },
-                { kanji: "聞く", kana: "きく", romaji: "kiku", english: "To listen", example: "音楽を聞きます。", exampleRomaji: "Ongaku o kikimasu.", exampleEnglish: "I listen to music." },
-                { kanji: "友人", kana: "ゆうじん", romaji: "yuujin", english: "Friend", example: "友人に会います。", exampleRomaji: "Yuujin ni aimasu.", exampleEnglish: "I meet my friend." }
-            ],
-            7: [
-                { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
-                { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
-                { kanji: "猫", kana: "ねこ", romaji: "neko", english: "Cat", example: "猫が好きです。", exampleRomaji: "Neko ga suki desu.", exampleEnglish: "I like cats." },
-                { kanji: "家", kana: "いえ", romaji: "ie", english: "House", example: "家に帰ります。", exampleRomaji: "Ie ni kaerimasu.", exampleEnglish: "I return home." },
-                { kanji: "食べる", kana: "たべる", romaji: "taberu", english: "To eat", example: "ご飯を食べます。", exampleRomaji: "Gohan o tabemasu.", exampleEnglish: "I eat a meal." },
-                { kanji: "飲む", kana: "のむ", romaji: "nomu", english: "To drink", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
-                { kanji: "行く", kana: "いく", romaji: "iku", english: "To go", example: "学校に行きます。", exampleRomaji: "Gakkou ni ikimasu.", exampleEnglish: "I go to school." },
-                { kanji: "見る", kana: "みる", romaji: "miru", english: "To see", example: "映画を見ます。", exampleRomaji: "Eiga o mimasu.", exampleEnglish: "I watch a movie." },
-                { kanji: "聞く", kana: "きく", romaji: "kiku", english: "To listen", example: "音楽を聞きます。", exampleRomaji: "Ongaku o kikimasu.", exampleEnglish: "I listen to music." },
-                { kanji: "友人", kana: "ゆうじん", romaji: "yuujin", english: "Friend", example: "友人に会います。", exampleRomaji: "Yuujin ni aimasu.", exampleEnglish: "I meet my friend." }
-            ],
-            8: [
-                { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
-                { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
-                { kanji: "猫", kana: "ねこ", romaji: "neko", english: "Cat", example: "猫が好きです。", exampleRomaji: "Neko ga suki desu.", exampleEnglish: "I like cats." },
-                { kanji: "家", kana: "いえ", romaji: "ie", english: "House", example: "家に帰ります。", exampleRomaji: "Ie ni kaerimasu.", exampleEnglish: "I return home." },
-                { kanji: "食べる", kana: "たべる", romaji: "taberu", english: "To eat", example: "ご飯を食べます。", exampleRomaji: "Gohan o tabemasu.", exampleEnglish: "I eat a meal." },
-                { kanji: "飲む", kana: "のむ", romaji: "nomu", english: "To drink", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
-                { kanji: "行く", kana: "いく", romaji: "iku", english: "To go", example: "学校に行きます。", exampleRomaji: "Gakkou ni ikimasu.", exampleEnglish: "I go to school." },
-                { kanji: "見る", kana: "みる", romaji: "miru", english: "To see", example: "映画を見ます。", exampleRomaji: "Eiga o mimasu.", exampleEnglish: "I watch a movie." },
-                { kanji: "聞く", kana: "きく", romaji: "kiku", english: "To listen", example: "音楽を聞きます。", exampleRomaji: "Ongaku o kikimasu.", exampleEnglish: "I listen to music." },
-                { kanji: "友人", kana: "ゆうじん", romaji: "yuujin", english: "Friend", example: "友人に会います。", exampleRomaji: "Yuujin ni aimasu.", exampleEnglish: "I meet my friend." }
-            ],
-            9: [
-                { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
-                { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
-                { kanji: "猫", kana: "ねこ", romaji: "neko", english: "Cat", example: "猫が好きです。", exampleRomaji: "Neko ga suki desu.", exampleEnglish: "I like cats." },
-                { kanji: "家", kana: "いえ", romaji: "ie", english: "House", example: "家に帰ります。", exampleRomaji: "Ie ni kaerimasu.", exampleEnglish: "I return home." },
-                { kanji: "食べる", kana: "たべる", romaji: "taberu", english: "To eat", example: "ご飯を食べます。", exampleRomaji: "Gohan o tabemasu.", exampleEnglish: "I eat a meal." },
-                { kanji: "飲む", kana: "のむ", romaji: "nomu", english: "To drink", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
-                { kanji: "行く", kana: "いく", romaji: "iku", english: "To go", example: "学校に行きます。", exampleRomaji: "Gakkou ni ikimasu.", exampleEnglish: "I go to school." },
-                { kanji: "見る", kana: "みる", romaji: "miru", english: "To see", example: "映画を見ます。", exampleRomaji: "Eiga o mimasu.", exampleEnglish: "I watch a movie." },
-                { kanji: "聞く", kana: "きく", romaji: "kiku", english: "To listen", example: "音楽を聞きます。", exampleRomaji: "Ongaku o kikimasu.", exampleEnglish: "I listen to music." },
-                { kanji: "友人", kana: "ゆうじん", romaji: "yuujin", english: "Friend", example: "友人に会います。", exampleRomaji: "Yuujin ni aimasu.", exampleEnglish: "I meet my friend." }
-            ],
-            10: [
-                { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
-                { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
-                { kanji: "猫", kana: "ねこ", romaji: "neko", english: "Cat", example: "猫が好きです。", exampleRomaji: "Neko ga suki desu.", exampleEnglish: "I like cats." },
-                { kanji: "家", kana: "いえ", romaji: "ie", english: "House", example: "家に帰ります。", exampleRomaji: "Ie ni kaerimasu.", exampleEnglish: "I return home." },
-                { kanji: "食べる", kana: "たべる", romaji: "taberu", english: "To eat", example: "ご飯を食べます。", exampleRomaji: "Gohan o tabemasu.", exampleEnglish: "I eat a meal." },
-                { kanji: "飲む", kana: "のむ", romaji: "nomu", english: "To drink", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
-                { kanji: "行く", kana: "いく", romaji: "iku", english: "To go", example: "学校に行きます。", exampleRomaji: "Gakkou ni ikimasu.", exampleEnglish: "I go to school." },
-                { kanji: "見る", kana: "みる", romaji: "miru", english: "To see", example: "映画を見ます。", exampleRomaji: "Eiga o mimasu.", exampleEnglish: "I watch a movie." },
-                { kanji: "聞く", kana: "きく", romaji: "kiku", english: "To listen", example: "音楽を聞きます。", exampleRomaji: "Ongaku o kikimasu.", exampleEnglish: "I listen to music." },
-                { kanji: "友人", kana: "ゆうじん", romaji: "yuujin", english: "Friend", example: "友人に会います。", exampleRomaji: "Yuujin ni aimasu.", exampleEnglish: "I meet my friend." }
-            ],
-            11: [
-                { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
-                { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
-                { kanji: "猫", kana: "ねこ", romaji: "neko", english: "Cat", example: "猫が好きです。", exampleRomaji: "Neko ga suki desu.", exampleEnglish: "I like cats." },
-                { kanji: "家", kana: "いえ", romaji: "ie", english: "House", example: "家に帰ります。", exampleRomaji: "Ie ni kaerimasu.", exampleEnglish: "I return home." },
-                { kanji: "食べる", kana: "たべる", romaji: "taberu", english: "To eat", example: "ご飯を食べます。", exampleRomaji: "Gohan o tabemasu.", exampleEnglish: "I eat a meal." },
-                { kanji: "飲む", kana: "のむ", romaji: "nomu", english: "To drink", example: "水を飲みます。", exampleRomaji: "Mizu o nomimasu.", exampleEnglish: "I drink water." },
-                { kanji: "行く", kana: "いく", romaji: "iku", english: "To go", example: "学校に行きます。", exampleRomaji: "Gakkou ni ikimasu.", exampleEnglish: "I go to school." },
-                { kanji: "見る", kana: "みる", romaji: "miru", english: "To see", example: "映画を見ます。", exampleRomaji: "Eiga o mimasu.", exampleEnglish: "I watch a movie." },
-                { kanji: "聞く", kana: "きく", romaji: "kiku", english: "To listen", example: "音楽を聞きます。", exampleRomaji: "Ongaku o kikimasu.", exampleEnglish: "I listen to music." },
-                { kanji: "友人", kana: "ゆうじん", romaji: "yuujin", english: "Friend", example: "友人に会います。", exampleRomaji: "Yuujin ni aimasu.", exampleEnglish: "I meet my friend." }
-            ],
-            12: [
                 { kanji: "本", kana: "ほん", romaji: "hon", english: "Book", example: "本を読みます。", exampleRomaji: "Hon o yomimasu.", exampleEnglish: "I read a book." },
                 { kanji: "犬", kana: "いぬ", romaji: "inu", english: "Dog", example: "犬がいます。", exampleRomaji: "Inu ga imasu.", exampleEnglish: "There is a dog." },
                 { kanji: "猫", kana: "ねこ", romaji: "neko", english: "Cat", example: "猫が好きです。", exampleRomaji: "Neko ga suki desu.", exampleEnglish: "I like cats." },
@@ -951,27 +1022,25 @@ function incorrectAnswer() {
 
 
 function goBackToCatalogue() {
-    // Hide all mode-specific containers
-    document.getElementById('matching-container').style.display = 'none';
-    document.getElementById('test-container').style.display = 'none';
-    document.getElementById('test-container').classList.remove('show'); 
-    document.getElementById('flashcard-container').classList.remove('show');
-    document.getElementById('listening-container').style.display = 'none';
-    document.getElementById('mode-container').style.display = 'none';
+        // Hide all mode-specific containers
+        document.getElementById('matching-container').style.display = 'none';
+        document.getElementById('test-container').style.display = 'none'; 
+        document.getElementById('test-container').classList.remove('show'); 
+        document.getElementById('flashcard-container').classList.remove('show');
+        document.getElementById('listening-container').style.display = 'none';
+        document.getElementById('mode-container').style.display = 'none';
+        document.getElementById('catalogue-container').style.display = 'flex';
 
-    // Ensure the catalogue container uses grid layout
-    const catalogueContainer = document.getElementById('catalogue-container');
-    catalogueContainer.style.display = 'block';  // Using 'block' or 'flex' can break grid; ensure it's correct
-    catalogueContainer.querySelector('.button-grid').style.display = 'grid';
-    
-    // Remove the preview container if it exists
-    const previewContainer = document.getElementById('preview-container');
-    if (previewContainer) {
-        previewContainer.remove();
+        // Remove the preview container if it exists
+        const previewContainer = document.getElementById('preview-container');
+        if (previewContainer) {
+            previewContainer.remove();
+        }
+        stopBattleBgm();
     }
-}
 
 
+    
 
 function checkListeningAnswer(selectedAnswer, correctAnswer) {
         if (selectedAnswer === correctAnswer) {
@@ -1142,38 +1211,27 @@ function checkMatching() {
 }
 
 
-function resetAllContainers() {
-    const containers = document.querySelectorAll(
-        '#flashcard-container, #test-container, #matching-container, #listening-container, #mode-container'
-    );
-    containers.forEach(container => {
-        container.style.display = 'none'; // Hide all containers
-        container.classList.remove('show'); // Reset any 'show' classes
-    });
+function resetAllContainers() 
+    {
+        const containers = document.querySelectorAll(
+            '#flashcard-container, #test-container, #matching-container, #listening-container, #battle-container, #sprite-selection-container, #mode-container'
+        );
+        containers.forEach(container => {
+            container.style.display = 'none'; // Hide all containers
+            container.classList.remove('show'); // Reset any 'show' classes
+        });
 
-    // Remove the preview container if it exists
-    const previewContainer = document.getElementById('preview-container');
-    if (previewContainer) {
-        previewContainer.remove();
+        // Remove the preview container if it exists
+        const previewContainer = document.getElementById('preview-container');
+        if (previewContainer) {
+            previewContainer.remove();
+        }
+
+        // Show the catalogue container
+        document.getElementById('catalogue-container').style.display = 'flex';
+
+        stopBattleBgm();
     }
-
-    // Show the catalogue container
-    const catalogueContainer = document.getElementById('catalogue-container');
-    catalogueContainer.style.display = 'block';
-
-    // Make sure button layout is restored correctly
-    const buttonGrid = catalogueContainer.querySelector('.button-grid');
-    if (buttonGrid) {
-        buttonGrid.style.display = 'grid';
-    }
-}
-
-function resetContainerStyles(container) {
-    container.style.margin = '0';
-    container.style.padding = '0';
-    container.style.alignItems = 'center';
-}
-
 
 
     let timerInterval; // To store the timer interval
@@ -1265,14 +1323,349 @@ function resetContainerStyles(container) {
     }
 
 
-</script>
+
+function chooseSet(setNumber) {
+    currentSet = vocabularySets[setNumber];
+    document.getElementById('catalogue-container').style.display = 'none';
+
+    // Show vocabulary preview
+    const previewContainer = document.createElement('div');
+    previewContainer.id = 'preview-container';
+    previewContainer.style.padding = '20px';
+    previewContainer.style.backgroundColor = '#ffffff';
+    previewContainer.style.borderRadius = '15px';
+    previewContainer.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+    previewContainer.style.marginBottom = '20px';
+
+    let previewHtml = '<h3>Vocabulary Preview</h3><ul>';
+    currentSet.forEach(card => {
+        previewHtml += `<li>${card.kanji} (${card.kana}) - ${card.english}</li>`;
+    });
+    previewHtml += '</ul><button class="catalogue-button" onclick="proceedToModeSelection()">Proceed to Practice</button>';
+    previewContainer.innerHTML = previewHtml;
+
+    document.body.appendChild(previewContainer);
+}
+
+function startBattleMode() {
+    if (currentSet.length === 0) {
+        alert('Please select a vocabulary set first!');
+        return;
+    }
+
+    // Show sprite selection screen
+    document.getElementById('mode-container').style.display = 'none';
+    document.getElementById('sprite-selection-container').style.display = 'flex';
+
+    // Show 3 random sprites to the user to choose from
+    const availableSprites = document.getElementById('available-sprites');
+    availableSprites.innerHTML = '';  // Clear previous sprites
+    const randomSprites = shuffleArray([...userSprites]).slice(0, 3);
+
+    randomSprites.forEach((sprite, index) => {
+        const img = document.createElement('img');
+        img.src = sprite;
+        img.className = 'sprite-image';
+        img.style.cursor = 'pointer';
+        img.onclick = () => selectUserSprite(sprite);
+        availableSprites.appendChild(img);
+    });
+}
+
+let selectedUserSprite = '';
+
+function selectUserSprite(sprite) {
+    // Set the selected user sprite and start the battle
+    selectedUserSprite = sprite;
+
+    // Hide sprite selection screen and show battle container
+    document.getElementById('sprite-selection-container').style.display = 'none';
+    document.getElementById('battle-container').style.display = 'flex';
+
+    // Set the selected sprite for the user's boxer
+    const userBoxerImg = document.getElementById('user-boxer').querySelector('img');
+    userBoxerImg.src = selectedUserSprite;
+
+    // Set a random sprite for the NPC each time
+    const npcBoxerImg = document.getElementById('npc-boxer').querySelector('img');
+    const randomNpcSpriteIndex = Math.floor(Math.random() * npcSprites.length);
+    npcBoxerImg.src = npcSprites[randomNpcSpriteIndex];
+
+    // Play a random BGM
+    const battleBgm = document.getElementById('battle-bgm');
+    const randomBgmIndex = Math.floor(Math.random() * battleBgms.length);
+    battleBgm.src = battleBgms[randomBgmIndex];
+    battleBgm.play();
+
+    // Reset HP bars
+    document.getElementById('user-hp').style.width = '100%';
+    document.getElementById('npc-hp').style.width = '100%';
+    currentQuestion = 0;
+    correctAnswers = 0;
+
+    // Start the first question
+    nextBattleQuestion();
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
 
 
+function nextBattleQuestion() {
+    // Only proceed if the battle hasn't ended
+    const npcHP = parseFloat(document.getElementById('npc-hp').style.width);
+    const userHP = parseFloat(document.getElementById('user-hp').style.width);
+
+    if (npcHP <= 0 || userHP <= 0) {
+        return; // Don't continue if battle is already over
+    }
+
+    currentQuestion++;
+    const card = currentSet[Math.floor(Math.random() * currentSet.length)];
+    const correctAnswer = card.english;
+
+    let answers = [correctAnswer];
+    while (answers.length < 4) {
+        const randomAnswer = currentSet[Math.floor(Math.random() * currentSet.length)].english;
+        if (!answers.includes(randomAnswer)) {
+            answers.push(randomAnswer);
+        }
+    }
+    answers = answers.sort(() => Math.random() - 0.5);
+
+    document.getElementById('battle-question').textContent = `What is the meaning of: ${card.kanji} (${card.kana})?`;
+    const answersContainer = document.getElementById('battle-answers');
+    answersContainer.innerHTML = '';
+
+    answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.textContent = answer;
+        button.onclick = () => checkBattleAnswer(answer, correctAnswer);
+        button.className = 'catalogue-button'; // Add button styles
+        answersContainer.appendChild(button);
+    });
+}
+
+function checkBattleAnswer(selectedAnswer, correctAnswer) {
+    const npcHP = document.getElementById('npc-hp');
+    const userHP = document.getElementById('user-hp');
+    const userBoxer = document.getElementById('user-boxer');
+    const npcBoxer = document.getElementById('npc-boxer');
+    const stage = document.querySelector('.stage');
+
+    if (selectedAnswer === correctAnswer) {
+        // User lands a punch
+        correctAnswers++;
+        let npcCurrentHP = parseFloat(npcHP.style.width) || 100;
+        npcCurrentHP = Math.max(0, npcCurrentHP - 5);
+        npcHP.style.width = npcCurrentHP + '%';
+
+        // Animate NPC hit
+        npcBoxer.querySelector('img').style.transform = 'translateX(20px)';
+        setTimeout(() => npcBoxer.querySelector('img').style.transform = 'translateX(0)', 200);
+
+        const tackleSound = document.getElementById('tackle-sound');
+        tackleSound.play();
+
+    } else {
+        // NPC counters - User loses HP
+        let userCurrentHP = parseFloat(userHP.style.width) || 100;
+        userCurrentHP = Math.max(0, userCurrentHP - 20);
+        userHP.style.width = userCurrentHP + '%';
+
+        // Animate User hit
+        userBoxer.querySelector('img').style.transform = 'translateX(-20px)';
+        setTimeout(() => userBoxer.querySelector('img').style.transform = 'translateX(0)', 200);
+
+        // Play Tackle Sound Effect
+        const tackleSound = document.getElementById('tackle-sound');
+        tackleSound.play();
+
+        // Turn stage red for 1 second
+        const originalBackground = stage.style.background || stage.style.backgroundColor || '';
+        stage.style.background = 'red';
+        setTimeout(() => {
+            stage.style.background = originalBackground;
+        }, 1000);
+    }
+
+    // Convert HP values to float to accurately check the HP left
+    const npcRemainingHP = parseFloat(npcHP.style.width);
+    const userRemainingHP = parseFloat(userHP.style.width);
+
+    // Check if the battle should end
+    if (npcRemainingHP <= 0) {
+        endBattle('win');
+    } else if (userRemainingHP <= 0) {
+        endBattle('lose');
+    } else {
+        // Only proceed to the next question if the battle has not ended
+        nextBattleQuestion();
+    }
+}
+
+function endBattle(result) {
+    // Stop the background music
+    stopBattleBgm();
+
+    // Play victory or defeat sound
+    if (result === 'win') {
+        const victorySound = document.getElementById('victory-sound');
+        victorySound.play();
+        alert('You won! You have defeated the opponent!');
+    } else if (result === 'lose') {
+        alert('(┬┬﹏┬┬) You lose! Try again!');
+    }
+
+    // Automatically transition to catalogue/home page after alert
+    setTimeout(() => {
+        document.getElementById('battle-container').style.display = 'none';
+        document.getElementById('catalogue-container').style.display = 'flex';
+    }, 200); // Delay to allow the alert message to finish
+}
+
+
+function stopBattleBgm() {
+    const battleBgm = document.getElementById('battle-bgm');
+    if (battleBgm) {
+        battleBgm.pause();
+        battleBgm.currentTime = 0; // Reset to the beginning
+    }
+}
+
+// Array of different user sprite image URLs
+const userSprites = [
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__384-mega__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__006-mega-y__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__003-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__257-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__373-mega__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__663__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__666-ocean__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__714__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__181-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__282-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__254-mega__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__382-primal__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__115-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__127-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__130-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__142-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__018-mega__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__065-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__150-mega-y__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__381-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/gen5/ani-b_black-white/a-b_bw_156.gif',
+    'https://www.pokencyclopedia.info/sprites/gen5/ani-b_black-white/a-b_bw_642-therian__2.gif',
+    'https://www.pokencyclopedia.info/sprites/gen5/ani-b_black-white/a-b_bw_250.gif',
+    'https://www.pokencyclopedia.info/sprites/gen5/ani-b_black-white/a-b_bw_049.gif',
+    'https://www.pokencyclopedia.info/sprites/gen5/ani-b_black-white/a-b_bw_017.gif',
+    'https://www.pokencyclopedia.info/sprites/gen5/ani-b_black-white/a-b_bw_119_m.gif',
+    'https://media.tenor.com/4K2_dLLq-pwAAAAi/charmander-chases-tail.gif',
+    'https://www.pokencyclopedia.info/sprites/gen5/ani-b_black-white/a-b_bw_212_f.gif',
+    'https://www.pokencyclopedia.info/sprites/gen5/ani-b_black-white/a-b_bw_249.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__663__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__666--fancy__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__697__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__208-mega__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__800-ultra__uu.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__785__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__774-red__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__743__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__738__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__732__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__764__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__746-school__sm.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/blastoise-gigantamax.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__720-unbound__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__719-mega__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__670--eternal__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__334-mega__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__009-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__229-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__686__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6/3a-b__679__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6_shiny/3a-b_-S_717__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6_shiny/3a-b_-S_693__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6_shiny/3a-b_-S_248-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6_shiny/3a-b_-S_181-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_6_shiny/3a-b_-S_015-mega__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__303-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__026-alola__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__103-alola__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__028-alola__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__730__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__787__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__804__uu.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__105-alola__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__727__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__089-alola__sm.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani-b_7/3a-b__658-ash__sm.gif',
+
+    
+
+    // Add as many sprite URLs as you like!
+];
+
+
+const npcSprites = [
+    'https://projectpokemon.org/images/sprites-models/swsh-shiny-sprites/pikachu-gigantamax.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-shiny-sprites/snorlax-gigantamax.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-shiny-sprites/meowth-gigantamax.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-shiny-sprites/drednaw-gigantamax.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-shiny-sprites/corviknight-gigantamax.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/venusaur-gigantamax.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/machamp-gigantamax.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/charizard-gigantamax.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/mr.-mime-galar.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-shiny-sprites/darmanitan-galar-zen.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/dragapult.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/zarude-dada.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/centiskorch-gigantamax.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-shiny-sprites/toxtricity-gigantamax.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/flapple.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/corviknight.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/scorbunny.gif',
+    'https://projectpokemon.org/images/sprites-models/swsh-normal-sprites/rillaboom.gif',
+    'https://www.rebornevo.com/uploads/monthly_2023_05/valiant.gif.1efdebc6c6235323121f8f075d2a00f0.gif',
+    'https://www.rebornevo.com/uploads/monthly_2023_05/valiant.gif.1efdebc6c6235323121f8f075d2a00f0.gif',
+    'https://forums.pokemmo.com/uploads/monthly_2022_11/1-front-n.gif.c74d2b040bee6a2e5e6710e93ab7e62e.gif',
+    'https://forums.pokemmo.com/uploads/monthly_2022_11/1-front-n.gif.c74d2b040bee6a2e5e6710e93ab7e62e.gif',
+    'https://www.smogon.com/forums/attachments/gholdengo_by_senso88_dfpqhhv-gif.528125/',
+    'https://www.smogon.com/forums/attachments/klawf_by_senso88_dfprib6-gif.528126/',
+    'https://wikimon.net/images/2/2e/162_KaratsukiNumemon.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__009-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__127-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__383-primal__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__384-mega__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__445-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__666--fancy__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__660__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__334-mega__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__142-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__130-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__006-mega-y__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__006-mega-x__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__003-mega__xy.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__025-pop-star__oras.gif',
+    'https://www.pokencyclopedia.info/sprites/3ds/ani_6/3ani__025-rock-star__oras.gif',
 
 
 
+    // Add more sprites if you'd like!
+];
 
+const battleBgms = [
+    'pokebgm1.mp3',
+    'pokebgm2.mp3',  // Replace with your own track names or paths
+    'pokebgm3.mp3'   // Add as many tracks as you want!
+];
 
     </script>
 
